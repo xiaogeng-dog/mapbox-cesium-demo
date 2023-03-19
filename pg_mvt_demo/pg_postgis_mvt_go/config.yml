@@ -1,0 +1,11 @@
+# 端口号
+port: ":9080"
+# 数据库连接信息配置
+database:
+  driver: "postgres"
+  host: "*.*.*.*"
+  port: "9999"
+  user: "postgres"
+  dbname: "*"
+  password: "*"
+  sslmode: "disable"
