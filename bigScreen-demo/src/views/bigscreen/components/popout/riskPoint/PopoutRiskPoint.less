@@ -1,0 +1,203 @@
+.popout-container {
+    height: 73vh;
+    width: 50vw;
+    background-image: url("../../../../../assets/popout-back.png");
+    background-size: 100% 100%;
+    position: absolute;
+    z-index: 3;
+    left: 25vw;
+    top: 18vh;
+
+    .close-img {
+        position: absolute;
+        right: 1vw;
+        top: 2.5vh;
+        cursor: pointer;
+        opacity: 0.7;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    .title-container {
+        margin-top: 4.5vh;
+        display: flex;
+        align-items: center;
+        margin-left: 1.2vw;
+
+        .itemicon {
+            height: 1.4vh;
+            border-right: 4px solid rgba(46, 124, 230, 1);
+        }
+
+        .title {
+            margin-left: 0.5vw;
+            color: #fff;
+            font-size: 0.9vw;
+            font-weight: bold;
+        }
+
+        .code {
+            margin-left: 0.5vw;
+            font-size: 0.8vw;
+            color: yellow;
+        }
+
+        .level {
+            margin-left: 0.5vw;
+            border-radius: 8px;
+            padding: 0 0.2vw;
+
+            &.level01 {
+                border: 1px solid rgba(46, 124, 230, 1);
+                color: #fff;
+            }
+
+            &.level02 {
+                border: 1px solid #F7B500;
+                color: #F7B500
+            }
+
+            &.level03 {
+                border: 1px solid #FF7A21;
+                color: #FF7A21
+            }
+
+            &.level04 {
+                border: 1px solid #FF3E3E;
+                color: #FF3E3E
+            }
+        }
+    }
+
+    .detail-container {
+        margin-top: 1vh;
+        font-size: 0.8vw;
+
+        .param {
+            text-align: right;
+            color: #fff;
+            margin: 0.5vh 0;
+        }
+
+        .value {
+            padding: 0 0.5vw;
+            color: rgba(34, 217, 254, 1);
+            margin: 0.5vh 0;
+        }
+    }
+
+    .type-container {
+        margin-top: 4.5vh;
+        color: rgba(255, 255, 255, 1);
+        font-size: 0.8vw;
+        display: flex;
+        justify-content: center;
+
+        .type {
+            padding: 0.5vh 1vw;
+            border: 1px solid rgba(23, 210, 230, 0.4);
+            border-radius: 6px;
+            margin: 0 0.2vw;
+            cursor: pointer;
+
+            &.active {
+                color: rgba(34, 217, 254, 1);
+                background: url("../../../../../assets/popout/tab-back.png");
+                background-size: 100% 100%;
+                border: none;
+            }
+
+            &:hover {
+                color: rgba(34, 217, 254, 1);
+            }
+        }
+
+    }
+
+
+
+    .body-container {
+        width: 46vw;
+        margin: 1.8vh auto;
+
+        /deep/ .table {
+            .ivu-table {
+                border-top-right-radius: 15px;
+                border-top-left-radius: 15px;
+                background-color: rgba(10, 31, 60, 0.7);
+
+                &::before {
+                    background-color: transparent;
+                }
+
+                & th {
+                    background-color: rgba(18, 91, 155, 1);
+                    color: rgba(189, 240, 255, 1);
+                    border: none;
+                    font-weight: 300;
+                }
+
+                .ivu-table-tbody {
+                    &>tr {
+                        color: white;
+
+                        &>td {
+                            background-color: transparent;
+                            border: none;
+                        }
+                    }
+
+
+                    .ivu-table-column-center {
+                        height: 4.8vh;
+                    }
+
+                    &>tr:nth-of-type(odd) {
+                        background-color: transparent;
+                    }
+
+                    &>tr:nth-of-type(even) {
+                        background-color: rgba(69, 126, 207, 0.24);
+                    }
+                }
+
+                .ivu-table-tip {
+                    td {
+                        background-color: transparent;
+                        color: white;
+                        border: none;
+                    }
+                }
+            }
+        }
+
+        /deep/ .page {
+            position: absolute;
+            bottom: 4vh;
+            right: 3vw;
+
+            .ivu-page-total {
+                color: rgba(255, 255, 255, 0.9);
+            }
+
+            &>li {
+                background-color: rgba(60, 124, 224, 0.3);
+                border: 1px solid rgba(217, 217, 217, 0.3);
+            }
+
+            &>.ivu-page-item-active {
+                background-color: rgba(24, 144, 255, 1);
+            }
+
+            &>li>a {
+                color: rgba(255, 255, 255, 0.65);
+            }
+
+            &>.ivu-page-item-active>a {
+                color: white;
+            }
+        }
+    }
+}

@@ -1,0 +1,515 @@
+
+* {
+    letter-spacing: 1px;
+}
+
+.container {
+    pointer-events: all;
+
+    .container-title {
+        font-size: 1vw;
+        color: #B0FFFD;
+        font-weight: 500;
+        margin: 0 0 1vh 0.2vw;
+        // background-image: linear-gradient(to right, rgba(49, 186, 194, 0.2), rgba(4, 24, 61, 0));
+        display: flex;
+        align-items: center;
+
+        .img {
+            height: 4vh;
+        }
+
+        .title {
+            padding-left: 0.5vw;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+}
+
+.popout {
+    cursor: pointer;
+
+    & * {
+        cursor: pointer;
+    }
+
+    &:hover {
+        transform: scale(1.1)
+    }
+}
+
+/deep/.select {
+    width: 150px;
+
+
+    .ivu-select-selection {
+
+        background-color: transparent;
+        border: none;
+    }
+
+    &>div {
+        background-color: rgba(15, 50, 88, 1);
+    }
+
+    &>div:first-child {
+        border: 1px solid rgba(31, 171, 222, 1);
+
+        .ivu-select-placeholder {
+            color: white;
+        }
+
+        .ivu-select-selected-value {
+            color: white;
+        }
+    }
+
+    .ivu-select-arrow {
+        color: #32C5FF;
+    }
+
+    .ivu-select-item {
+        color: white;
+    }
+
+
+    .ivu-select-item-selected {
+        background-color: rgba(15, 50, 88, 1);
+        color: rgba(45, 140, 240, .9);
+    }
+
+    .ivu-select-item-focus {
+        background-color: rgba(15, 50, 88, 1);
+    }
+
+    .ivu-select-item:hover {
+        background-color: rgb(28, 81, 138);
+    }
+
+    .ivu-tag {
+        background-color: transparent;
+        border: none;
+
+        span {
+            color: white;
+        }
+
+        .ivu-icon {
+            color: white;
+        }
+    }
+
+    /* 设置滚动条的样式 */
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    /* 滚动槽 */
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: rgba(0, 0, 0, 0);
+        border-radius: 5px;
+    }
+
+    /* 滚动条滑块 */
+    ::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background: #32C5FF;
+        -webkit-box-shadow: rgba(0, 0, 0, 0.5);
+    }
+}
+
+
+/deep/.input {
+
+    &>input {
+        background-color: rgba(15, 50, 88, 1);
+        border: 1px solid rgba(31, 171, 222, 1);
+        color: white;
+    }
+}
+
+// 树
+/deep/.tree-container {
+    margin-right: 10px;
+    height: 85vh;
+    overflow: auto;
+
+    .ivu-tree-arrow {
+        color: rgba(62, 250, 208, 1);
+    }
+
+    .ivu-tree-title {
+        color: #fff;
+
+        &:hover {
+            background-color: transparent;
+        }
+    }
+
+    .ivu-tree-title-selected {
+        background-color: transparent;
+    }
+}
+
+.main-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    display: flex;
+    pointer-events: none;
+    font-size: 0.8vw;
+    color: white;
+    // background-image: linear-gradient(to right, rgba(0, 14, 35, 0.9), rgba(1, 17, 46, 0.8) 15%, rgba(3, 11, 34, 0) 35%, rgba(3, 11, 34, 0) 65%, rgba(1, 17, 46, 0.8) 85%, rgba(0, 14, 35, 0.9));
+    background-color: #294066;
+
+    .col2 {
+        width: 25vw;
+        padding-top: 8vh;
+    }
+
+    .col3 {
+        width: 50vw;
+        position: relative;
+    }
+
+    .col4 {
+        width: 25vw;
+        z-index: 2;
+
+        .weather-container {
+            height: 8vh;
+            display: flex;
+            justify-content: space-around;
+
+            .weather {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                // width: 10vw;
+
+                .img {
+                    height: 6vh;
+                }
+
+                .text {
+                    color: rgba(90, 254, 245, 1);
+                }
+            }
+        }
+
+        .table-container {
+
+            .chart {
+                height: 20vh;
+            }
+
+            .chart1 {
+                height: 16vh;
+            }
+
+            .detail-container {
+                .seamless-warp {
+                    max-height: 40vh;
+                }
+
+                .detail {
+                    padding-bottom: 1vh;
+                    border-bottom: 1px dashed #369ACE;
+
+                    .button {
+                        border: 1px solid #369ACE;
+                        background: rgba(5, 29, 50, 0.7);
+                        text-align: center;
+                        width: 60%;
+                        border-radius: 3px;
+                    }
+
+                    .location {
+                        border: 1px solid #369ACE;
+                        background: rgba(5, 29, 50, 0.7);
+                        text-align: center;
+                        width: 80%;
+                        position: absolute;
+                        bottom: 0;
+                        border-radius: 3px;
+                        cursor: pointer;
+
+                        & * {
+                            cursor: pointer;
+                        }
+
+                        &:hover {
+                            transform: scale(1.1)
+                        }
+                    }
+
+                    .title1 {
+                        font-weight: 600;
+                        color: #32C5FF;
+                        font-size: 1.1vw;
+                    }
+
+                    .title2 {
+                        color: #32C5FF;
+                    }
+
+                    .param {
+                        margin-right: 0.5vw;
+                    }
+
+                    .value {
+                        color: #F59A23;
+                    }
+                }
+            }
+
+        }
+
+
+    }
+}
+.body-container {
+    margin-top: 8vh;
+    // width: 100vw;
+    height: 100vh;
+    // display: flex;
+    align-items: center;
+    color: #fff;
+
+    /deep/ .table {
+      width: 100%;
+      .ivu-table {
+        border-top-right-radius: 15px;
+        border-top-left-radius: 15px;
+        background-color: rgba(10, 31, 60, 0.7);
+
+        &::before {
+          background-color: transparent;
+        }
+
+        & th {
+          background-color: rgba(18, 91, 155, 1);
+          color: rgba(189, 240, 255, 1);
+          border: none;
+          font-weight: 300;
+        }
+
+        .ivu-table td,
+        .ivu-table th {
+          height: 4.8vh;
+        }
+
+        .ivu-table-tbody {
+          & > tr {
+            color: white;
+
+            & > td {
+              background-color: transparent;
+              border: none;
+            }
+          }
+
+          .ivu-table-column-center {
+            height: 4.8vh;
+          }
+
+          & > tr:nth-of-type(odd) {
+            background-color: transparent;
+          }
+
+          & > tr:nth-of-type(even) {
+            background-color: rgba(69, 126, 207, 0.24);
+          }
+        }
+
+        .ivu-table-tip {
+          td {
+            background-color: transparent;
+            color: white;
+            border: none;
+          }
+        }
+      }
+    }
+}
+/deep/.date-select {
+    z-index: 4;
+    font-size: 14px;
+  
+    .ivu-icon {
+      color: #fff;
+    }
+  
+    .ivu-input {
+      border: 1px solid rgba(31, 171, 222, 1);
+      background-color: transparent;
+      color: #fff;
+    }
+  
+    .ivu-picker-panel-body {
+      background-color: rgba(15, 50, 88, 1);
+  
+      .ivu-date-picker-cells-cell {
+        color: #fff;
+  
+        &:hover>em {
+          background-color: #2d8cf0;
+        }
+      }
+  
+      .ivu-date-picker-cells-cell-disabled {
+        color: #c5c8ce;
+        background-color: transparent;
+      }
+  
+      .ivu-date-picker-cells-cell-range>em {
+        color: #fff;
+      }
+  
+      .ivu-date-picker-header-label {
+        color: #fff;
+      }
+  
+      .ivu-date-picker-cells-cell-focused {
+        background-color: transparent;
+      }
+    }
+  
+    .ivu-date-picker-cells-cell-range:before {
+      background-color: #2d8cf0;
+    }
+  }
+  
+/deep/ .page {
+    position: absolute;
+    bottom: 4vh;
+    right: 3vw;
+
+    .ivu-page-total {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    & > li {
+      background-color: rgba(60, 124, 224, 0.3);
+      border: 1px solid rgba(217, 217, 217, 0.3);
+    }
+
+    & > .ivu-page-item-active {
+      background-color: rgba(24, 144, 255, 1);
+    }
+
+    & > li > a {
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    & > .ivu-page-item-active > a {
+      color: white;
+    }
+  }
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: rgba(0, 0, 0, 0);
+    border-radius: 5px;
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #294066;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+    background: #294066;
+}
+
+.col3 {
+    width: 50vw;
+    position: relative;
+
+    .tool-container {
+      margin-top: 10vh;
+      padding: 0 2vh;
+      display: flex;
+      position: relative;
+
+      .search-container {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        input {
+          height: 4vh;
+          width: 10vw;
+          font-size: 1vw;
+          padding-left: 0.5vw;
+          background-color: rgba(15, 50, 88, 1);
+          border: 1px solid rgba(31, 171, 222, 1);
+          border-top-left-radius: 3px;
+          border-bottom-left-radius: 3px;
+          color: white;
+
+          &:focus {
+            outline: 1px solid rgba(31, 171, 222, 1);
+          }
+        }
+
+        .img {
+          height: 4vh;
+          background-color: rgba(30, 191, 249, 1);
+          border-top-right-radius: 3px;
+          border-bottom-right-radius: 3px;
+          cursor: pointer;
+        }
+
+        .list {
+          width: 100%;
+          height: 253px;
+          transition: height 1s;
+          overflow: auto;
+          background-color: rgba(15, 50, 88, 1);
+          border: 1px solid rgba(31, 171, 222, 1);
+
+          .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin: 1vh 0.5vw;
+            cursor: pointer;
+
+            input {
+              height: 2vh;
+              width: 2vh;
+              margin: 0 0.2vw;
+            }
+
+            .icon {
+              height: 3vh;
+              width: 3vh;
+              margin: 0 0.2vw;
+            }
+          }
+
+
+          .item {
+            display: block;
+            padding: 0.5vh 0.5vw;
+          }
+        }
+
+        .list-hide {
+          height: 0;
+          overflow: hidden;
+        }
+      }
+    }
+  }

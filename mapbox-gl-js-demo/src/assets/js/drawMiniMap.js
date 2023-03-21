@@ -8,8 +8,8 @@ function initMiniMap(container, map) {
   let style = getStyle();
   const ovmap = new mapboxgl.Map({
     container,
-    style: "mapbox://styles/mapbox/streets-v12", // style URL
-    // style: style,
+    // style: "mapbox://styles/mapbox/streets-v12", // style URL
+    style: style,
     center,
     zoom: 2,
   });
@@ -19,7 +19,10 @@ function initMiniMap(container, map) {
   var overview_y; //鹰眼的y坐标
   var map_zoom; //地图的比例尺
   var overview_zoom; //鹰眼的比例尺
-
+  ovmap.on("load", function () {
+    //添加天地图底图
+    addTDTLayers(ovmap);
+  });
   // 拖拽
   function mapdrag() {
     map_x = map.getCenter().lng;
@@ -59,43 +62,6 @@ function initMiniMap(container, map) {
     //移除鹰眼的拖拽监听
     ovmap.off("drag", overviewdrag);
     ovmap.off("zoom", overviewzoom);
-
-    ovmap.on("load", function () {
-      //添加天地图底图
-      addTDTLayers(ovmap);
-      // map.addLayer({
-      //   type: 'circle',
-      //   source: 'test',
-      //   paint: {
-      //     'circle-color': 'red',
-      //     'circle-radius': 4,
-      //   },
-      //   'source-layer': 'points',
-      //   maxzoom: 14,
-      //   id: '1',
-      // })
-      // map.addLayer({
-      //   type: 'line',
-      //   source: 'test',
-      //   'source-layer': 'line',
-      //   maxzoom: 14,
-      //   id: '2',
-      //   layout: {
-      //     'line-join': 'miter',
-      //     'line-miter-limit': 2,
-      //     'line-round-limit': 1.05,
-      //   },
-      //   paint: { 'line-color': '#5028D5' },
-      // })
-      // map.addLayer({
-      //   type: 'fill',
-      //   source: 'test',
-      //   'source-layer': 'polygon',
-      //   maxzoom: 14,
-      //   id: '3',
-      //   paint: { 'fill-color': '#60D330', 'fill-outline-color': '#000000' },
-      // })
-    });
   });
 }
 
@@ -130,12 +96,11 @@ function getStyle() {
 
 //添加3857坐标系天地图
 function addTDTLayers(map) {
+  console.log(1111111111);
   //添加3857天地图矢量source
   var source_vec = {
     type: "raster",
-    tiles: [
-      "http://t0.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=42a5cc72ceffa83582cc329ed0d156f",
-    ],
+    tiles: [TDT_Underlay],
     tileSize: 256,
   };
   if (!map.getSource("TDT_VEC")) {
@@ -157,7 +122,6 @@ function addTDTLayers(map) {
   var source_cva = {
     type: "raster",
     tiles: [TDT_Note],
-
     tileSize: 256,
   };
   if (!map.getSource("TDT_CVA")) {
@@ -171,9 +135,9 @@ function addTDTLayers(map) {
     minzoom: 0,
     maxzoom: 22,
   };
-  // if (!map.getLayer("tdtcva")) {
-  //   map.addLayer(Layer_cva);
-  // }
+  if (!map.getLayer("tdtcva")) {
+    map.addLayer(Layer_cva);
+  }
 }
 
 export default initMiniMap;

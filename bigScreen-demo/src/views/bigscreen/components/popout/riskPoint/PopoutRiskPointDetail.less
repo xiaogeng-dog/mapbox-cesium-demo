@@ -1,0 +1,59 @@
+.popout-container {
+    width: 900px;
+    background: #041525ee;
+    position: absolute;
+    z-index: 3;
+    left: 702px;
+    top: 230px;
+    border-radius: 20px;
+    padding: 20px;
+    overflow: hidden;
+
+    .close-img {
+        position: absolute;
+        right: -1px;
+        top: 0;
+        cursor: pointer;
+        opacity: 0.7;
+        width: 35px;
+        border-bottom-left-radius: 20px;
+        width: 45px;
+        height: 35px;
+        object-fit: cover;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    .title-container {
+        .title {
+            color: rgba(34, 217, 254, 1);
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    }
+
+    .body-container {
+        max-height: 700px;
+        overflow: auto;
+
+        .detail-container {
+            font-size: 16px;
+            margin: 10px 10px;
+
+            .param {
+                color: rgba(34, 217, 254, 1);
+            }
+
+            .value {
+                color: #fff;
+            }
+
+            a.value {
+                margin-right: 10px;
+            }
+        }
+    }
+}

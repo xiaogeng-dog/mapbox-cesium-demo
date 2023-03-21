@@ -1,0 +1,842 @@
+* {
+  letter-spacing: 1px;
+}
+
+.container {
+  pointer-events: all;
+
+  .container-title {
+    font-size: 1vw;
+    color: #B0FFFD;
+    font-weight: 500;
+    margin: 0 0 1vh 0.2vw;
+    background-image: linear-gradient(to right, rgba(49, 186, 194, 0.2), rgba(4, 24, 61, 0));
+    display: flex;
+    align-items: center;
+
+    .img {
+      height: 4vh;
+    }
+
+    .title {
+      padding-left: 0.5vw;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .task-img {
+      height: 3vh;
+      display: block;
+      margin-left: auto;
+      margin-right: 2vw;
+    }
+  }
+}
+
+.popout {
+  cursor: pointer;
+
+  & * {
+    cursor: pointer;
+  }
+
+  &:hover {
+    transform: scale(1.1)
+  }
+}
+
+
+.main-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  display: flex;
+  pointer-events: none;
+  font-size: 0.8vw;
+  color: white;
+  background-image: linear-gradient(to right, rgba(0, 14, 35, 0.9), rgba(1, 17, 46, 0.8) 15%, rgba(3, 11, 34, 0) 35%, rgba(3, 11, 34, 0) 65%, rgba(1, 17, 46, 0.8) 85%, rgba(0, 14, 35, 0.9));
+
+  .col2 {
+    width: 25vw;
+    padding-top: 8vh;
+
+    .range-container {
+      font-size: 0.9vw;
+
+      .item {
+        display: flex;
+
+        .img-container.out {
+          border: 1px solid #276F6C;
+          background: rgba(34, 53, 92, 0.4);
+        }
+
+        .img-container {
+          position: relative;
+          height: 25vh;
+          width: 12vw;
+          // background-color: #0f3258;
+          padding: 2.8vh 0.7vw 1.4vh 0.7vw;
+          margin: 2vh 0.5vw 0 0.5vw;
+          border-radius: 16px;
+          border: 1px solid #56A4E7;
+          background: rgba(34, 53, 92, 0.2);
+          font-size: 0.8vw;
+
+          .name {
+            font-size: 0.9vw;
+            background-image: url("../../assets/bigscreen/bg-car1.png");
+            background-size: 100% 100%;
+            width: 10vw;
+            line-height: 4.8vh;
+            text-indent: 3.7vw;
+            // position: absolute;
+            // top: 2.8vh;
+            // left: 0.7vw;
+          }
+
+          .name.out {
+            background-image: url("../../assets/bigscreen/bg-car3.png");
+          }
+
+          .name.two {
+            top: 13.2vh;
+          }
+
+          .location {
+            font-size: 0.8vw;
+            display: flex;
+            // margin-top: 5.2vh;
+            // margin-left: 6px;
+          }
+
+          .time {
+            display: flex;
+            // margin-left: 6px;
+            font-size: 0.8vw;
+            // margin-left: 1.5vw;
+          }
+        }
+
+        .detail {
+          position: absolute;
+          top: -1.4vh;
+          right: 3.5vw;
+          width: 4.5vw;
+          line-height: 3vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #fff;
+          // margin: 1vh auto;
+          border-radius: 15px;
+          font-size: 0.8vw;
+        }
+
+        .detail.in {
+          background: #11A9E0;
+          // border: 1px solid #5CA4F2;
+        }
+
+        .detail.out {
+          background: #3396A0;
+          // border: 1px solid #ED7215;
+        }
+      }
+    }
+
+    .table-container {
+      .chart {
+        height: 23vh;
+      }
+    }
+
+    .table-container1 {
+      padding: 10px 0;
+      .detail-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 1vw;
+        .img {
+          margin-bottom: 1vh;
+          width: 5vw;
+        }
+        .num {
+          color: #FF9722;
+          font-size: 2vw;
+          margin: 1vh 0 0.6vh 0;
+        }
+        .unit {
+          font-size: 0.9vw;
+        }
+      }
+      .item-container {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        .item {
+          margin-top: 2vh;
+          .img-container {
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            align-items: center;
+            .img2 {
+              width: 4vw;
+              margin-right: 6px;
+            }
+            .num-container {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: flex-start;
+              font-size: 1.2vw;
+              text-align: justify;
+              .num3 {
+                color: #5EE9FF;
+                font-size: 1.6vw;
+              }
+            }
+          }
+        }
+      }
+
+    }
+
+    // .ecology-container {
+    //   margin-top: 1vh;
+    //   .table1 {
+    //     height: 24vh;
+    //     width: 100%;
+    //     margin: 0 auto;
+    //     overflow-y: scroll;
+    //     font-size: 0.8vw;
+    //     text-align: center;
+    //     color: #fff;
+    //     width: 100%;
+    //     overflow: hidden;
+
+    //     .thead {
+    //       background: #0E487A;
+    //       line-height: 4vh;
+    //       text-align: center;
+    //       display: flex;
+    //     }
+
+    //     .thead div:nth-child(1) {
+    //       width: 10%;
+    //     }
+
+    //     .thead div:nth-child(2) {
+    //       width: 20%;
+    //     }
+
+    //     .thead div:nth-child(3) {
+    //       width: 20%;
+    //     }
+
+    //     .thead div:nth-child(4) {
+    //       width: 50%;
+    //     }
+
+    //     .tbody {
+    //       display: flex;
+    //     }
+
+    //     .tbody {
+    //       background: rgba(177, 216, 255, 0.1);
+    //       line-height: 4vh;
+    //     }
+
+    //     .tbody:nth-child(even) {
+    //       background: rgba(53, 153, 254, 0.16);
+    //     }
+
+    //     .tbody div:nth-child(3) {
+    //       color: #FF9618;
+    //     }
+
+    //     .tbody div:nth-child(1) {
+    //       width: 10%;
+    //     }
+
+    //     .tbody div:nth-child(2) {
+    //       width: 20%;
+    //     }
+
+    //     .tbody div:nth-child(3) {
+    //       width: 20%;
+    //     }
+
+    //     .tbody div:nth-child(4) {
+    //       width: 50%;
+    //     }
+    //   }
+
+    // }
+  }
+
+  .col3 {
+    width: 50vw;
+    position: relative;
+
+    .tool-container {
+      margin-top: 10vh;
+      padding: 0 2vh;
+      display: flex;
+      position: relative;
+
+
+      .search-container {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        input {
+          height: 4vh;
+          width: 10vw;
+          font-size: 1vw;
+          padding-left: 0.5vw;
+          background-color: rgba(15, 50, 88, 1);
+          border: 1px solid rgba(31, 171, 222, 1);
+          border-top-left-radius: 3px;
+          border-bottom-left-radius: 3px;
+          color: white;
+
+          &:focus {
+            outline: 1px solid rgba(31, 171, 222, 1);
+          }
+        }
+
+        .img {
+          height: 4vh;
+          background-color: rgba(30, 191, 249, 1);
+          border-top-right-radius: 3px;
+          border-bottom-right-radius: 3px;
+          cursor: pointer;
+        }
+
+        .list {
+          width: 100%;
+          height: 253px;
+          transition: height 1s;
+          overflow: auto;
+          background-color: rgba(15, 50, 88, 1);
+          border: 1px solid rgba(31, 171, 222, 1);
+
+          .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin: 1vh 0.5vw;
+            cursor: pointer;
+
+            input {
+              height: 2vh;
+              width: 2vh;
+              margin: 0 0.2vw;
+            }
+
+            .icon {
+              height: 3vh;
+              width: 3vh;
+              margin: 0 0.2vw;
+            }
+          }
+
+
+          .item {
+            display: block;
+            padding: 0.5vh 0.5vw;
+          }
+        }
+
+        .list-hide {
+          height: 0;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+
+  .col4 {
+    width: 25vw;
+    z-index: 2;
+
+    .weather-container {
+      height: 8vh;
+      display: flex;
+      justify-content: space-around;
+
+      .weather {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        // width: 10vw;
+
+        .img {
+          height: 6vh;
+        }
+
+        .text {
+          color: rgba(90, 254, 245, 1);
+        }
+      }
+    }
+
+    .ecology-container {
+      margin-top: 1vh;
+      .table1 {
+        // height: 24vh;
+        height: auto;
+        width: 100%;
+        margin: 0 auto;
+        overflow-y: scroll;
+        font-size: 0.8vw;
+        text-align: center;
+        color: #fff;
+        width: 100%;
+        overflow: hidden;
+
+        .thead {
+          background: #0E487A;
+          line-height: 4vh;
+          text-align: center;
+          display: flex;
+        }
+
+        .thead div:nth-child(1) {
+          width: 10%;
+        }
+
+        .thead div:nth-child(2) {
+          width: 20%;
+        }
+
+        .thead div:nth-child(3) {
+          width: 20%;
+        }
+
+        .thead div:nth-child(4) {
+          width: 50%;
+        }
+
+        .tbody {
+          display: flex;
+        }
+
+        .tbody {
+          background: rgba(177, 216, 255, 0.1);
+          line-height: 4vh;
+        }
+
+        .tbody:nth-child(even) {
+          background: rgba(53, 153, 254, 0.16);
+        }
+
+        .tbody div:nth-child(3) {
+          color: #FF9618;
+        }
+
+        .tbody div:nth-child(1) {
+          width: 10%;
+        }
+
+        .tbody div:nth-child(2) {
+          width: 20%;
+        }
+
+        .tbody div:nth-child(3) {
+          width: 20%;
+        }
+
+        .tbody div:nth-child(4) {
+          width: 50%;
+        }
+      }
+
+    }
+
+    // .table-container {
+    //   padding: 10px 0;
+
+    //   .detail-container {
+    //     display: flex;
+    //     flex-direction: column;
+    //     align-items: center;
+    //     font-size: 1vw;
+
+    //     .img {
+    //       margin-bottom: 1vh;
+    //       width: 5vw;
+    //     }
+
+    //     .num {
+    //       color: #FF9722;
+    //       font-size: 2vw;
+    //       margin: 1vh 0 0.6vh 0;
+    //     }
+
+    //     .unit {
+    //       font-size: 0.9vw;
+    //     }
+    //   }
+
+    //   .item-container {
+    //     display: flex;
+    //     justify-content: flex-start;
+    //     flex-wrap: wrap;
+
+    //     .item {
+    //       margin-top: 2vh;
+
+    //       .img-container {
+    //         display: flex;
+    //         justify-content: space-between;
+    //         text-align: center;
+    //         align-items: center;
+
+
+
+    //         .img2 {
+    //           width: 4vw;
+    //           margin-right: 6px;
+    //         }
+
+    //         .num-container {
+    //           display: flex;
+    //           flex-direction: column;
+    //           justify-content: center;
+    //           align-items: flex-start;
+    //           font-size: 1.2vw;
+    //           text-align: justify;
+
+    //           .num3 {
+    //             color: #5EE9FF;
+    //             font-size: 1.6vw;
+    //           }
+
+
+    //         }
+
+    //       }
+    //     }
+    //   }
+
+    // }
+
+    .video-container {
+      .item-container {
+        .item {
+          display: flex;
+          justify-content: center;
+
+          .video {
+            width: 11vw;
+            height: 17vh;
+            border-radius: 10px;
+            margin: 0 0.5vw;
+            object-fit: cover;
+          }
+
+          .img-container {
+            position: relative;
+          }
+
+        }
+      }
+    }
+
+    .task-container {
+      .table1 {
+        height: 323vh;
+        width: 100%;
+        overflow-y: scroll;
+        font-size: 0.8vw;
+        text-align: center;
+        color: #fff;
+        width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+
+        .thead {
+          background: #0E487A;
+          height: 40px;
+          line-height: 40px;
+          text-align: center;
+          display: flex;
+        }
+
+        .thead div:nth-child(1) {
+          width: 10%;
+        }
+
+        .thead div:nth-child(2) {
+          width: 20%;
+        }
+
+        .thead div:nth-child(3) {
+          width: 20%;
+        }
+
+        .thead div:nth-child(4) {
+          width: 50%;
+        }
+
+        .tbody {
+          display: flex;
+        }
+
+        .tbody {
+          background: rgba(177, 216, 255, 0.1);
+          height: 40px;
+          line-height: 40px;
+        }
+
+        .tbody:nth-child(even) {
+          background: rgba(53, 153, 254, 0.16);
+        }
+
+        .tbody div:nth-child(3) {
+          color: #FF9618;
+        }
+
+        .tbody div:nth-child(1) {
+          width: 10%;
+        }
+
+        .tbody div:nth-child(2) {
+          width: 20%;
+        }
+
+        .tbody div:nth-child(3) {
+          width: 20%;
+        }
+
+        .tbody div:nth-child(4) {
+          width: 50%;
+        }
+      }
+    }
+  }
+}
+
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: rgba(0, 0, 0, 0);
+  border-radius: 5px;
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #294066;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: #294066;
+}
+
+
+/************************底部图层选择*************************/
+
+.bottomCheckbox .checkBoxs .check .r01::before {
+  background: url("../../assets/bigscreen/icon-level1.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r02::before {
+  background: url("../../assets/bigscreen/icon-level2.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r03::before {
+  background: url("../../assets/bigscreen/icon-level3.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r04::before {
+  background: url("../../assets/bigscreen/icon-level4.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r05::before {
+  background: url("../../assets/bigscreen/icon-level5.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r06::before {
+  background: url("../../assets/bigscreen/icon-level6.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r07::before {
+  background: url("../../assets/bigscreen/icon-level7.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r08::before {
+  background: url("../../assets/bigscreen/icon-level8.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r09::before {
+  background: url("../../assets/bigscreen/icon-level9.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r10::before {
+  background: url("../../assets/bigscreen/icon-level10.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r11::before {
+  background: url("../../assets/bigscreen/icon-level11.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r12::before {
+  background: url("../../assets/bigscreen/icon-level12.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r13::before {
+  background: url("../../assets/bigscreen/icon-level13.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r14::before {
+  background: url("../../assets/bigscreen/icon-level14.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r15::before {
+  background: url("../../assets/bigscreen/icon-level15.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r16::before {
+  background: url("../../assets/bigscreen/icon-level16.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r17::before {
+  background: url("../../assets/bigscreen/icon-level17.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r24::before {
+  background: url("../../assets/bigscreen/icon-level24.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox {
+  position: absolute;
+  bottom: 22px;
+  left: 1vw;
+  width: 10vw;
+  background: rgba(5, 29, 50, 0.9);
+  box-shadow: 0px 0px 10px 0px rgba(38, 188, 247, 0.2), inset 0px 0px 30px 0px rgba(50, 197, 255, 0.3);
+  border-radius: 20px;
+  border: 1px solid #369ACE;
+  padding-bottom: 1vh;
+}
+
+.bottomCheckbox .checkBoxs .check {
+  height: 2.5vh;
+  margin-bottom: 0.1vh;
+  box-sizing: border-box;
+  position: relative;
+  cursor: pointer;
+}
+
+.checkAll {
+  width: 100%;
+  display: flex;
+  padding-left: 0.5vw;
+  padding-top: 0.3vh;
+  margin-bottom: 0.5vw;
+  color: #32C5FF;
+  font-weight: 500;
+  font-size: 1vw;
+}
+
+.checkIcons {
+  height: 1vh;
+  width: 1vw;
+  border-radius: 3px;
+  background: url("../../assets/bigscreen/IOCN-UNcheck.png") center center / 100% 100% no-repeat;
+}
+
+.checkAll .checked {
+  background: url("../../assets/bigscreen/icon-checked.png") center center / 100% 100% no-repeat !important;
+}
+
+.bottomCheckbox .checkBoxs .check .checkIcon {
+  height: 1.8vh;
+  width: 1.8vh;
+  position: absolute;
+  top: 0.6vh;
+  left: 0.7vw;
+  border-radius: 3px;
+  background: url("../../assets/bigscreen/IOCN-UNcheck.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .checked {
+  background: url("../../assets/bigscreen/icon-checked.png") center center / 100% 100% no-repeat !important;
+}
+
+.bottomCheckbox>.checkBoxs .check .checkLabel {
+  line-height: 3.4vh;
+  font-size: 0.7vw;
+  color: #fff;
+  font-family: PingFangSC-Regular, PingFang SC;
+}
+
+.bottomCheckbox .checkBoxs .check .checkLabel::before {
+  content: '';
+  display: block;
+  width: 2.2vh;
+  height: 2.2vh;
+  position: absolute;
+  top: 0.5vh;
+  left: 1.8vw;
+}
+
+.bottomCheckbox .titleHeader {
+  text-align: center;
+  font-size: 0.9vw;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 500;
+  color: #A5E9FA;
+  margin: 0.5vh 0;
+}
+
+.bottomCheckbox .line {
+  width: 10vw;
+  height: 2px;
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 49%, rgba(255, 255, 255, 0) 100%);
+  margin: 0 auto;
+}
+
+.bottomCheckbox .checkList {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.5vw;
+
+  .busnissGroup {
+    margin: 0.3vh 0;
+    padding-left: 3vw;
+
+    & * {
+      cursor: pointer;
+    }
+  }
+}
+
+.carChoose {
+  width: 9vw;
+  color: #fff;
+  background: #222330;
+  border: 1px solid #353541;
+  position: absolute;
+  top: 4.3vh;
+  left: 1vw;
+  border-radius: 2vh;
+  padding-left: 0.4vw;
+  padding-top: 0.5vh;
+  padding-bottom: 0.5vh;
+  z-index: 9999;
+}

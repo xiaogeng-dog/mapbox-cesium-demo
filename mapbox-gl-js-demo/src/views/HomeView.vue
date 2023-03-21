@@ -31,15 +31,15 @@ export default {
 <style lang="less" scoped>
 #container {
   width: 100%;
-  height: 1000px;
+  height: 800px;
 }
 
 #overviewMap {
-  width: 160px;
-  height: 160px;
+  width: 200px;
+  height: 200px;
   position: absolute;
   right: 20px;
-  bottom: 250px;
+  bottom: 50px;
   border: 2px solid gray;
 }
 .mapboxgl-ctrl-attrib {

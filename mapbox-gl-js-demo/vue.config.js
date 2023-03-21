@@ -16,11 +16,11 @@ module.exports = defineConfig({
         },
       ],
     },
-    // resolve: {
-    //   fallback: {
-    //     path: false,
-    //     fs: false,
-    //   },
-    // },
+    resolve: {
+      fallback: {
+        path: false,
+        fs: false,
+      },
+    },
   },
 });

@@ -1,0 +1,550 @@
+* {
+    letter-spacing: 1px;
+}
+
+.container {
+    pointer-events: all;
+
+    .container-title {
+        font-size: 1vw;
+        color: #B0FFFD;
+        font-weight: 500;
+        margin: 0 0 1vh 0.2vw;
+        background-image: linear-gradient(to right, rgba(49, 186, 194, 0.2), rgba(4, 24, 61, 0));
+        display: flex;
+        align-items: center;
+
+        .img {
+            height: 4vh;
+        }
+
+        .title {
+            padding-left: 0.5vw;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+}
+
+.popout {
+    cursor: pointer;
+
+    & * {
+        cursor: pointer;
+    }
+
+    &:hover {
+        transform: scale(1.1)
+    }
+}
+
+/deep/.select {
+    width: 150px;
+
+
+    .ivu-select-selection {
+
+        background-color: transparent;
+        border: none;
+    }
+
+    &>div {
+        background-color: rgba(15, 50, 88, 1);
+    }
+
+    &>div:first-child {
+        border: 1px solid rgba(31, 171, 222, 1);
+
+        .ivu-select-placeholder {
+            color: white;
+        }
+
+        .ivu-select-selected-value {
+            color: white;
+        }
+    }
+
+    .ivu-select-arrow {
+        color: #32C5FF;
+    }
+
+    .ivu-select-item {
+        color: white;
+    }
+
+
+    .ivu-select-item-selected {
+        background-color: rgba(15, 50, 88, 1);
+        color: rgba(45, 140, 240, .9);
+    }
+
+    .ivu-select-item-focus {
+        background-color: rgba(15, 50, 88, 1);
+    }
+
+    .ivu-select-item:hover {
+        background-color: rgb(28, 81, 138);
+    }
+
+    .ivu-tag {
+        background-color: transparent;
+        border: none;
+
+        span {
+            color: white;
+        }
+
+        .ivu-icon {
+            color: white;
+        }
+    }
+
+    /* 设置滚动条的样式 */
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    /* 滚动槽 */
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: rgba(0, 0, 0, 0);
+        border-radius: 5px;
+    }
+
+    /* 滚动条滑块 */
+    ::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background: #32C5FF;
+        -webkit-box-shadow: rgba(0, 0, 0, 0.5);
+    }
+}
+
+.main-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    display: flex;
+    pointer-events: none;
+    font-size: 0.8vw;
+    color: white;
+    background-image: linear-gradient(to right, rgba(0, 14, 35, 0.9), rgba(1, 17, 46, 0.8) 15%, rgba(3, 11, 34, 0) 35%, rgba(3, 11, 34, 0) 65%, rgba(1, 17, 46, 0.8) 85%, rgba(0, 14, 35, 0.9));
+
+    .col2 {
+        width: 25vw;
+        padding-top: 8vh;
+
+        .task-container {
+            .num-container {
+                text-align: center;
+
+                .num {
+                    color: #4be1fe;
+                    font-size: 1.8vw;
+                }
+            }
+        }
+
+        .row3 {
+            margin-top: 3vh;
+
+            .search-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .btns {
+                    display: flex;
+                    font-size: 0.7vw;
+                    cursor: pointer;
+                }
+
+                .btns .btn {
+                    width: 3vw;
+                    line-height: 2.6vh;
+                    text-align: center;
+                    color: rgba(255, 255, 255, 0.8);
+                    background: #2E538F;
+                    margin-right: 1px;
+                    cursor: pointer;
+                }
+
+                .btns .btn.active {
+                    background: #1BB6F3;
+                    color: #FFFFFF;
+                }
+
+
+            }
+
+            .chart {
+                height: 28vh;
+            }
+
+
+        }
+
+        .range-container {
+
+            margin-top: 3vh;
+
+            .select {
+                margin-left: auto;
+                display: block;
+            }
+
+            .chart {
+                height: 23vh;
+            }
+
+        }
+    }
+
+    .col3 {
+        width: 50vw;
+        position: relative;
+
+        .tool-container {
+            margin-top: 10vh;
+            padding: 0 2vh;
+            display: flex;
+            position: relative;
+
+
+            .search-container {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+
+                input {
+                    height: 4vh;
+                    width: 10vw;
+                    font-size: 1vw;
+                    padding-left: 0.5vw;
+                    background-color: rgba(15, 50, 88, 1);
+                    border: 1px solid rgba(31, 171, 222, 1);
+                    border-top-left-radius: 3px;
+                    border-bottom-left-radius: 3px;
+                    color: white;
+
+                    &:focus {
+                        outline: 1px solid rgba(31, 171, 222, 1);
+                    }
+                }
+
+                .img {
+                    height: 4vh;
+                    background-color: rgba(30, 191, 249, 1);
+                    border-top-right-radius: 3px;
+                    border-bottom-right-radius: 3px;
+                    cursor: pointer;
+                }
+
+                .list {
+                    width: 100%;
+                    height: 253px;
+                    transition: height 1s;
+                    overflow: auto;
+                    background-color: rgba(15, 50, 88, 1);
+                    border: 1px solid rgba(31, 171, 222, 1);
+
+                    .checkbox-container {
+                        display: flex;
+                        align-items: center;
+                        margin: 1vh 0.5vw;
+                        cursor: pointer;
+
+                        input {
+                            height: 2vh;
+                            width: 2vh;
+                            margin: 0 0.2vw;
+                        }
+
+                        .icon {
+                            height: 3vh;
+                            width: 3vh;
+                            margin: 0 0.2vw;
+                        }
+                    }
+
+
+                    .item {
+                        display: block;
+                        padding: 0.5vh 0.5vw;
+                    }
+                }
+
+                .list-hide {
+                    height: 0;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+
+    .col4 {
+        width: 25vw;
+        z-index: 2;
+
+        .weather-container {
+            height: 8vh;
+            display: flex;
+            justify-content: space-around;
+
+            .weather {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                // width: 10vw;
+
+                .img {
+                    height: 6vh;
+                }
+
+                .text {
+                    color: rgba(90, 254, 245, 1);
+                }
+            }
+        }
+
+        .table-container {
+
+            .chart {
+                height: 20vh;
+            }
+
+            .chart1 {
+                height: 16vh;
+            }
+
+
+        }
+
+
+    }
+}
+
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: rgba(0, 0, 0, 0);
+    border-radius: 5px;
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #294066;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+    background: #294066;
+}
+
+
+.col3 {
+    width: 50vw;
+    position: relative;
+
+    .tool-container {
+      margin-top: 10vh;
+      padding: 0 2vh;
+      display: flex;
+      position: relative;
+
+      .search-container {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        input {
+          height: 4vh;
+          width: 10vw;
+          font-size: 1vw;
+          padding-left: 0.5vw;
+          background-color: rgba(15, 50, 88, 1);
+          border: 1px solid rgba(31, 171, 222, 1);
+          border-top-left-radius: 3px;
+          border-bottom-left-radius: 3px;
+          color: white;
+
+          &:focus {
+            outline: 1px solid rgba(31, 171, 222, 1);
+          }
+        }
+
+        .img {
+          height: 4vh;
+          background-color: rgba(30, 191, 249, 1);
+          border-top-right-radius: 3px;
+          border-bottom-right-radius: 3px;
+          cursor: pointer;
+        }
+
+        .list {
+          width: 100%;
+          height: 253px;
+          transition: height 1s;
+          overflow: auto;
+          background-color: rgba(15, 50, 88, 1);
+          border: 1px solid rgba(31, 171, 222, 1);
+
+          .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin: 1vh 0.5vw;
+            cursor: pointer;
+
+            input {
+              height: 2vh;
+              width: 2vh;
+              margin: 0 0.2vw;
+            }
+
+            .icon {
+              height: 3vh;
+              width: 3vh;
+              margin: 0 0.2vw;
+            }
+          }
+
+
+          .item {
+            display: block;
+            padding: 0.5vh 0.5vw;
+          }
+        }
+
+        .list-hide {
+          height: 0;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+
+  
+/************************底部图层选择*************************/
+
+
+.bottomCheckbox .checkBoxs .check .r40::before {
+    background: url("../../assets/bigscreen/icon-level40.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox {
+    position: absolute;
+    bottom: 22px;
+    left: 1vw;
+    width: 10vw;
+    background: rgba(5, 29, 50, 0.9);
+    box-shadow: 0px 0px 10px 0px rgba(38, 188, 247, 0.2), inset 0px 0px 30px 0px rgba(50, 197, 255, 0.3);
+    border-radius: 20px;
+    border: 1px solid #369ACE;
+    padding-bottom: 1vh;
+}
+
+.bottomCheckbox .checkBoxs .check {
+    height: 2.5vh;
+    margin-bottom: 0.1vh;
+    box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
+}
+
+.checkAll {
+    width: 100%;
+    display: flex;
+    padding-left: 0.5vw;
+    padding-top: 0.3vh;
+    margin-bottom: 0.5vw;
+    color: #32C5FF;
+    font-weight: 500;
+    font-size: 1vw;
+}
+
+.checkIcons {
+    height: 1vh;
+    width: 1vw;
+    border-radius: 3px;
+    /* border: 1px solid #959FA5; */
+    background: url("../../assets/bigscreen/IOCN-UNcheck.png") center center / 100% 100% no-repeat;
+    /* transform: scale(0.6); */
+}
+
+.checkAll .checked {
+    background: url("../../assets/bigscreen/icon-checked.png") center center / 100% 100% no-repeat !important;
+}
+
+.bottomCheckbox .checkBoxs .check .checkIcon {
+    height: 1.8vh;
+    width: 1.8vh;
+    position: absolute;
+    top: 0.6vh;
+    left: 0.7vw;
+    border-radius: 3px;
+    /* border: 1px solid #959FA5; */
+    background: url("../../assets/bigscreen/IOCN-UNcheck.png") center center / 100% 100% no-repeat;
+    /* transform: scale(0.6); */
+}
+
+.bottomCheckbox .checkBoxs .checked {
+    background: url("../../assets/bigscreen/icon-checked.png") center center / 100% 100% no-repeat !important;
+}
+
+.bottomCheckbox>.checkBoxs .check .checkLabel {
+    line-height: 3.4vh;
+    font-size: 0.7vw;
+    color: #fff;
+    font-family: PingFangSC-Regular, PingFang SC;
+}
+
+.bottomCheckbox .checkBoxs .check .checkLabel::before {
+    content: '';
+    display: block;
+    width: 2.2vh;
+    height: 2.2vh;
+    position: absolute;
+    top: 0.5vh;
+    left: 1.8vw;
+}
+
+
+.bottomCheckbox .titleHeader {
+    text-align: center;
+    font-size: 0.9vw;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 500;
+    color: #A5E9FA;
+    // border-bottom: 1px solid rgba(151, 151, 151, 0.6);
+    // margin: 0 auto 0.5vh;
+    margin: 0.5vh 0;
+}
+
+.bottomCheckbox .line {
+    width: 10vw;
+    height: 2px;
+    background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 49%, rgba(255, 255, 255, 0) 100%);
+    margin: 0 auto;
+}
+
+.bottomCheckbox .checkList {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0.5vw;
+
+    .busnissGroup {
+        margin: 0.3vh 0;
+        padding-left: 3vw;
+
+        & * {
+            cursor: pointer;
+        }
+    }
+}

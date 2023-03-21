@@ -1,0 +1,333 @@
+.popout-container {
+    height: 73vh;
+    width: 50vw;
+    background-image: url("../../../../assets/popout-back.png");
+    background-size: 100% 100%;
+    position: absolute;
+    z-index: 3;
+    left: 25vw;
+    top: 18vh;
+
+    .close-img {
+        position: absolute;
+        right: 1vw;
+        top: 2.5vh;
+        cursor: pointer;
+        opacity: 0.7;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    .title-container {
+        background-image: url("../../../../assets/title-container.png");
+        background-size: 100% 100%;
+        height: 5.2vh;
+        width: 15vw;
+        margin: auto;
+        margin-top: 2.5vh;
+        position: relative;
+
+        .title {
+            font-size: 0.9vw;
+            background: url("../../../../assets/pop-title.png") no-repeat center center;
+            background-size: contain;
+            text-align: center;
+            width: 10vw;
+            color: rgba(189, 240, 255, 1);
+            position: absolute;
+            left: 2.5vw;
+            top: 1.3vh;
+        }
+    }
+
+    .body-container {
+        width: 46vw;
+        margin: 1.8vh auto;
+        display: flex;
+
+        .contentleft {
+            width: 10vw;
+            height: 58vh;
+            display: flex;
+            background: rgba(28, 55, 105, 0.9) !important;
+            flex-direction: column;
+            /*border-radius: 0 0 0px 20px!important;*/
+        }
+
+        .contentright {
+            width: 36vw;
+            height: 58vh;
+            background: #193463 !important;
+            padding: 10px 7%;
+        }
+
+        /****************左侧列表布局**********************/
+        .listtitle {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 1vh 0.5vw;
+            font-size: 0.7vw;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #fff;
+            height: 4vh;
+        }
+
+        .titleicon {
+            height: 1.2vh;
+            width: 3px;
+            background: #60D2FF;
+            margin-right: 5px;
+        }
+
+        /***********左侧列表布局***********/
+        .contentlist {
+            width: 10vw;
+            height: calc(100% -20px);
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        .listitem {
+            width: 10vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 11vh;
+            font-family: PingFangSC-Regular, PingFang SC;
+            padding: 0.5vh 0px;
+            cursor: pointer;
+            box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1);
+        }
+        .listitem:hover {
+            background: rgba(74, 170, 243, 0.2);
+        }
+
+        .select {
+            background: rgba(74, 170, 243, 0.3);
+        }
+
+        .itemvalueselect {
+            color: #0E80D6 !important;
+        }
+
+        .itemcenter {
+            display: flex;
+            width: 50%;
+            height: 100%;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .itemright {
+            display: flex;
+            width: 17%;
+            height: 100%;
+            align-items: center;
+        }
+
+        .itemonlineIcon {
+            width: 60%;
+            height: 65%;
+            background: url("../../../../assets/onlineIcon.png") center center / 100% 100% no-repeat !important;
+        }
+
+        .cwoff {
+            width: 32px;
+            height: 32px;
+            background: url("../../../../assets/ICON-cw-off.png") center center / 100% 100% no-repeat !important;
+        }
+
+        .cwon {
+            margin-left: 0.5vw;
+            width: 1.6vw;
+            height: 1.6vw;
+            background: url("../../../../assets/ICON-cw-on.png") center center / 100% 100% no-repeat !important;
+        }
+
+        .scoff {
+            width: 32px;
+            height: 32px;
+            background: url("../../../../assets/ICON-sc-off.png") center center / 100% 100% no-repeat !important;
+            margin-top: -50px;
+        }
+
+        .scon {
+            width: 32px;
+            height: 32px;
+            background: url("../../../../assets/ICON-sc-on.png") center center / 100% 100% no-repeat !important;
+            margin-top: -50px;
+        }
+
+        .kfoff {
+            width: 32px;
+            height: 32px;
+            background: url("../../../../assets/ICON-kf-off.png") center center / 100% 100% no-repeat !important;
+            margin-top: -50px;
+        }
+
+        .kfon {
+            width: 32px;
+            height: 32px;
+            background: url("../../../../assets/ICON-kf-on.png") center center / 100% 100% no-repeat !important;
+            margin-top: -50px;
+        }
+
+        .itemofflineIcon {
+            width: 60%;
+            height: 65%;
+            background: url("../../../../assets/offlineIcon.png") center center / 100% 100% no-repeat !important;
+        }
+
+        .itemcentertitle {
+            font-size: 0.6vw;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .itemcenterinfo {
+            font-size: 0.4vw;
+            font-weight: 400;
+        }
+
+        .itemslabel {
+            color: #fff;
+        }
+
+        .itemsvalue {
+            color: #C4FFFA;
+        }
+
+        .itemarrow {
+            width: 90%;
+            height: 50%;
+            background: url("../../../../assets/itemarrow.png") center center / 70% 70% no-repeat !important;
+        }
+
+        /****************右侧内容布局**********************/
+        .rightbuttonbox {
+            width: 100%;
+            height: 11%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .rightconten {
+            width: 100%;
+            height: 18%;
+            display: flex;
+            justify-content: space-around;
+            padding-top: 3%;
+        }
+
+        .chartbutton {
+            width: 100%;
+            height: 11%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .historybox {
+            width: 100%;
+            height: 10%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .chartbox {
+            width: 100%;
+            height: 50%;
+            /*border: 0.1px solid red;*/
+        }
+
+        /*******右侧顶部按钮*************/
+        .buttondiv {
+            width: 100%;
+            padding: 1% 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .itembutton {
+            width: 25%;
+            height: 100%;
+            min-height: 20px;
+            max-height: 35px;
+            background: #2E538F;
+            border: 1px solid #2E538F;
+            color: rgba(255, 255, 255, 0.8);
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            cursor: pointer;
+        }
+
+        .leftradius {
+            border-radius: 10px 0px 0px 10px;
+            ;
+        }
+
+        .rightradius {
+            border-radius: 0px 10px 10px 0px;
+            ;
+        }
+
+        .buttonchecked {
+            background: #1BB6F3;
+            color: white;
+            border-color: #1BB6F3;
+        }
+
+        /*******右侧表格信息*************/
+        .itemleftcontent {
+            display: flex;
+            height: 100%;
+            width:50%;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .itemrightcontent {
+            display: flex;
+            height: 100%;
+            width: 50%;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .iteminfo {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            font-size: 0.6vw;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+
+        }
+
+        .infolabel {
+            width: 60%;
+            /*display: flex;*/
+            /*justify-content: flex-end;*/
+            color: #fff;
+            text-align: right;
+        }
+
+        .infovalue {
+            width: 40%;
+            text-align: left;
+            color: #C4FFFA;
+        }
+
+        .chart {
+            width: 100%;
+            height: 100%;
+        }
+
+    }
+}

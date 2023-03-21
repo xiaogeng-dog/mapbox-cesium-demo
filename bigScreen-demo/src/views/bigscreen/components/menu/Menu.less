@@ -1,0 +1,140 @@
+.menu-container {
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    // padding-top: 10px;
+    z-index: 3;
+    display: flex;
+    justify-content: flex-start;
+    font-size: 1vw;
+    // font-style: italic;
+    // font-weight: 900;
+    text-align: center;
+    padding-left: 34vw;
+
+    .menu {
+        // background-image: url("../../../../assets/menu.png");
+        // background-size: 100% 100%;
+        color: #89D7FF;
+        line-height: 7vh;
+        width: 5vw;
+        margin: 0 0.5vw;
+        // padding: 0 0.5vw;
+        cursor: pointer;
+    }
+
+    .menu-chosen {
+        // background-image: url("../../../../assets/menu-chosen.png");
+        // background-size: 100% 100%;
+        background: rgba(8, 149, 233, 0.2);
+        box-shadow: inset 0px -2px 0px 0px #0FBAF5;
+        color: #E2F5FF;
+        line-height: 7vh;
+        width: 5vw;
+        margin: 0 0.5vw;
+        // padding: 0 0.5vw;
+        cursor: pointer;
+    }
+
+    .menu:hover {
+        background: rgba(8, 149, 233, 0.2);
+    }
+
+    .light1 {
+        position: absolute;
+        top: 5.9vh;
+        left: 50vw;
+        height: 1.5vh;
+        animation: move1 10s infinite linear;
+    }
+
+
+    .light2 {
+        position: absolute;
+        top: 5.9vh;
+        left: 50vw;
+        height: 1.5vh;
+        animation: move2 10s infinite linear;
+    }
+
+    .light3 {
+        position: absolute;
+        top: 5.9vh;
+        left: 50vw;
+        height: 1.5vh;
+        animation: move3 10s infinite linear;
+    }
+
+
+    .light4 {
+        position: absolute;
+        top: 5.9vh;
+        left: 50vw;
+        height: 1.5vh;
+        animation: move4 10s infinite linear;
+    }
+
+
+    @keyframes move1 {
+        0% {
+            left: 50vw;
+            opacity: 1;
+        }
+
+        // 50% {
+        //     left: 550px;
+        //     opacity: 0.2;
+        // }
+        100% {
+            left: 0;
+            opacity: 0.2;
+        }
+    }
+
+    @keyframes move2 {
+        0% {
+            left: 50vw;
+            opacity: 1;
+        }
+
+        100% {
+            left: 100vw;
+            opacity: 0.2;
+        }
+    }
+
+    @keyframes move3 {
+        0% {
+            left: 50vw;
+            opacity: 0;
+        }
+
+        50% {
+            left: 50vw;
+            opacity: 0.2;
+        }
+
+        100% {
+            left: 0;
+            opacity: 1;
+        }
+    }
+
+    @keyframes move4 {
+        0% {
+            left: 50vw;
+            opacity: 0;
+        }
+
+        50% {
+            left: 50vw;
+            opacity: 0.2;
+        }
+
+        100% {
+            left: 100vw;
+            opacity: 1;
+        }
+    }
+}

@@ -3,6 +3,28 @@ import { mapboxToken, TDT_Underlay, TDT_Note } from "@/assets/js/mapToken";
 import { center } from "@/assets/js/mapBasis";
 import unitGrid from "@/assets/mapData/单元网格.geojson";
 import interestingPoint from "@/assets/mapData/兴趣点.geojson";
+import axios from "axios";
+
+function axiosData(map) {
+  axios.get("/地形图（点）.geojson").then((res) => {
+    console.log(res.data);
+    map.addSource("maps", {
+      type: "geojson",
+      data: res.data,
+    });
+
+    map.addLayer({
+      id: "markers11",
+      type: "raster",
+      source: "maps",
+      // paint: {
+      //   "circle-radius": 2,
+      //   "circle-color": "#f3f",
+      // },
+    });
+  });
+}
+
 function initMap(container) {
   const mapboxgl = require("mapbox-gl");
   mapboxgl.accessToken = mapboxToken;
@@ -14,7 +36,7 @@ function initMap(container) {
     // style: "mapbox://styles/mapbox/streets-v12", // style URL
     center,
     zoom: 3, // starting zoom
-    hash: true,
+    // hash: true,
     dragRotate: false,
     doubleClickZoom: false,
   });
@@ -53,6 +75,7 @@ function initMap(container) {
         ],
       },
     });
+    // axiosData(map);
     map.addLayer({
       id: "markers",
       type: "circle",

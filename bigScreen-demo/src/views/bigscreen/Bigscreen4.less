@@ -1,0 +1,853 @@
+* {
+  letter-spacing: 1px;
+  cursor: default;
+}
+
+.container {
+  pointer-events: all;
+
+  .container-title {
+    font-size: 1vw;
+    color: #B0FFFD;
+    font-weight: 500;
+    margin: 0 0 1vh 0.2vw;
+    background-image: linear-gradient(to right, rgba(49, 186, 194, 0.2), rgba(4, 24, 61, 0));
+    display: flex;
+    align-items: center;
+
+    .img {
+      height: 4vh;
+    }
+
+    .title {
+      padding-left: 0.5vw;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
+
+
+/deep/.select {
+
+  .ivu-select-selection {
+
+    background-color: transparent;
+    border: none;
+  }
+
+  &>div {
+    background-color: rgba(15, 50, 88, 1);
+  }
+
+  &>div:first-child {
+    border: 1px solid rgba(31, 171, 222, 1);
+
+    .ivu-select-placeholder {
+      color: white;
+    }
+
+    .ivu-select-selected-value {
+      color: white;
+    }
+  }
+
+  .ivu-select-arrow {
+    color: #32C5FF;
+  }
+
+  .ivu-select-item {
+    color: white;
+  }
+
+
+  .ivu-select-item-selected {
+    background-color: rgba(15, 50, 88, 1);
+    color: rgba(45, 140, 240, .9);
+  }
+
+  .ivu-select-item-focus {
+    background-color: rgba(15, 50, 88, 1);
+  }
+
+  .ivu-select-item:hover {
+    background-color: rgb(28, 81, 138);
+  }
+
+  .ivu-tag {
+    background-color: transparent;
+    border: none;
+
+    span {
+      color: white;
+    }
+
+    .ivu-icon {
+      color: white;
+    }
+  }
+
+  /* 设置滚动条的样式 */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* 滚动槽 */
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: rgba(0, 0, 0, 0);
+    border-radius: 5px;
+  }
+
+  /* 滚动条滑块 */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #32C5FF;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.5);
+  }
+}
+
+/deep/.date-select {
+  z-index: 4;
+  font-size: 14px;
+
+  .ivu-icon {
+    color: #fff;
+  }
+
+  .ivu-input {
+    border: 1px solid rgba(31, 171, 222, 1);
+    background-color: transparent;
+    color: #fff;
+  }
+
+  .ivu-picker-panel-body {
+    background-color: rgba(15, 50, 88, 1);
+
+    .ivu-date-picker-cells-cell {
+      color: #fff;
+
+      &:hover>em {
+        background-color: #2d8cf0;
+      }
+    }
+
+    .ivu-date-picker-cells-cell-disabled {
+      color: #c5c8ce;
+      background-color: transparent;
+    }
+
+    .ivu-date-picker-cells-cell-range>em {
+      color: #fff;
+    }
+
+    .ivu-date-picker-header-label {
+      color: #fff;
+    }
+
+    .ivu-date-picker-cells-cell-focused {
+      background-color: transparent;
+    }
+  }
+
+  .ivu-date-picker-cells-cell-range:before {
+    background-color: #2d8cf0;
+  }
+}
+
+.main-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  display: flex;
+  pointer-events: none;
+  font-size: 0.8vw;
+  color: white;
+  background-image: linear-gradient(to right, rgba(0, 14, 35, 0.9), rgba(1, 17, 46, 0.8) 15%, rgba(3, 11, 34, 0) 35%, rgba(3, 11, 34, 0) 65%, rgba(1, 17, 46, 0.8) 85%, rgba(0, 14, 35, 0.9));
+
+  .col2 {
+    width: 25vw;
+    padding-top: 8vh;
+
+    .ecology-container {
+      // margin-top: 10px;
+
+      .detail-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 0.9vw;
+
+        .img {
+          margin-bottom: 1vh;
+          width: 4vw;
+        }
+
+        .num {
+          color: #27BEFF;
+          font-size: 1.2vw;
+          font-weight: 600;
+        }
+
+        .unit {
+          margin-top: -5px;
+          font-size: 0.9vw;
+        }
+      }
+
+      .item-container {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+
+        .item {
+          // margin-right: 1vw;
+          margin-bottom: 1vh;
+
+          .img-container {
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            align-items: center;
+
+
+            .img2 {
+              width: 3.2vw;
+            }
+
+            .num-container {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: flex-start;
+              font-size: 0.8vw;
+
+              .num1 {
+                color: #5EE9FF;
+                font-size: 1.2vw;
+              }
+
+            }
+
+          }
+        }
+      }
+    }
+
+
+    .table-container {
+
+      .tab-container {
+        position: absolute;
+        top: 0.5vh;
+        right: 0;
+        display: flex;
+
+        .tab {
+          border: 1px solid rgba(35, 171, 203, 0.5);
+          margin: 0 5px;
+          padding: 0 5px;
+          cursor: pointer;
+          color: rgba(255, 255, 255, 0.8);
+
+          &.active {
+            box-shadow: inset 0px 0px 20px 0px rgba(49, 197, 255, 0.3);
+            color: #fff;
+          }
+
+          &:hover {
+            box-shadow: inset 0px 0px 20px 0px rgba(49, 197, 255, 0.3);
+            color: #fff;
+          }
+        }
+      }
+
+      .item-container {
+        .item {
+          // margin-right: 1vw;
+
+          .img-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 1vh;
+            white-space: nowrap;
+
+            .img {
+              width: 2vw;
+              // margin-top: 26px;
+              margin-right: 0.5vw;
+            }
+
+            .num1 {
+              // color: #5EE9FF;
+              font-size: 2.2vw;
+
+              // margin-left: 0.1vw;
+              &.g1 {
+                color: rgb(0, 228, 0)
+              }
+
+              &.g2 {
+                color: rgb(255, 255, 0);
+              }
+
+              &.g3 {
+                color: rgb(255, 126, 0);
+              }
+
+              &.g4 {
+                color: rgb(255, 0, 0);
+              }
+
+              &.g5 {
+                color: rgb(153, 0, 76);
+              }
+
+              &.g6 {
+                color: rgb(126, 0, 35);
+              }
+            }
+
+            .aqi {
+              color: #fff;
+              font-size: 0.8vw;
+              margin-top: 1vh;
+              margin-left: 0.2vw;
+            }
+
+          }
+
+          .fir {
+            .tit {
+              // text-align: center;
+              // margin-right: 0.5vw;
+              font-size: 0.8vw;
+            }
+
+            .num2 {
+              font-size: 1.2vw;
+              color: #F79600;
+              margin-bottom: 2.4vh;
+            }
+          }
+
+          .blu {
+            color: #5EE9FF;
+            font-size: 0.8vw;
+          }
+
+          .bro {
+            color: #F79600;
+            font-size: 0.8vw;
+          }
+        }
+
+        .month {
+          text-align: center;
+
+          .pointer {
+            cursor: pointer;
+          }
+        }
+
+        .chart {
+          height: 20vh;
+          width: 100%;
+        }
+
+        .chart2 {
+          height: 25vh;
+        }
+
+        .legend {
+          font-size: 0.7vw;
+
+          .name {
+            display: flex;
+            text-align: center;
+
+            div {
+              width: 2vw;
+            }
+          }
+
+          .color {
+            display: flex;
+
+            div {
+              height: 10px;
+              width: 2vw;
+
+              &:nth-child(1) {
+                background-color: rgb(0, 228, 0);
+              }
+
+              &:nth-child(2) {
+                background-color: rgb(255, 255, 0);
+              }
+
+              &:nth-child(3) {
+                background-color: rgb(255, 126, 0);
+              }
+
+              &:nth-child(4) {
+                background-color: rgb(255, 0, 0);
+              }
+
+              &:nth-child(5) {
+                background-color: rgb(153, 0, 76);
+              }
+
+              &:nth-child(6) {
+                background-color: rgb(126, 0, 35);
+              }
+            }
+          }
+
+          .num {
+            display: flex;
+            margin-left: -0.5vw;
+
+            div {
+              width: 2vw;
+            }
+          }
+        }
+
+        .subtab-container {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 1vh;
+
+          .tab {
+            margin-right: 1px;
+            color: rgba(255, 255, 255, 0.8);
+            background: #2E538F;
+            cursor: pointer;
+            padding: 0 3px;
+
+            &.active {
+              background: #1BB6F3;
+              color: #FFFFFF;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .col3 {
+    width: 50vw;
+    position: relative;
+
+    .tool-container {
+      margin-top: 10vh;
+      padding: 0 2vh;
+      display: flex;
+      position: relative;
+
+
+      .search-container {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        input {
+          height: 4vh;
+          width: 10vw;
+          font-size: 1vw;
+          padding-left: 0.5vw;
+          background-color: rgba(15, 50, 88, 1);
+          border: 1px solid rgba(31, 171, 222, 1);
+          border-top-left-radius: 3px;
+          border-bottom-left-radius: 3px;
+          color: white;
+
+          &:focus {
+            outline: 1px solid rgba(31, 171, 222, 1);
+          }
+        }
+
+        .img {
+          height: 4vh;
+          background-color: rgba(30, 191, 249, 1);
+          border-top-right-radius: 3px;
+          border-bottom-right-radius: 3px;
+          cursor: pointer;
+        }
+
+        .list {
+          width: 100%;
+          height: 253px;
+          transition: height 1s;
+          overflow: auto;
+          background-color: rgba(15, 50, 88, 1);
+          border: 1px solid rgba(31, 171, 222, 1);
+
+          .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin: 1vh 0.5vw;
+            cursor: pointer;
+
+            input {
+              height: 2vh;
+              width: 2vh;
+              margin: 0 0.2vw;
+            }
+
+            .icon {
+              height: 3vh;
+              width: 3vh;
+              margin: 0 0.2vw;
+            }
+          }
+
+
+          .item {
+            display: block;
+            padding: 0.5vh 0.5vw;
+          }
+        }
+
+        .list-hide {
+          height: 0;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+
+  .col4 {
+    width: 25vw;
+    z-index: 2;
+
+    .weather-container {
+      height: 8vh;
+      display: flex;
+      justify-content: space-around;
+
+      .weather {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        // width: 10vw;
+
+        .img {
+          height: 6vh;
+        }
+
+        .text {
+          color: rgba(90, 254, 245, 1);
+        }
+      }
+    }
+
+
+    .table-container {
+
+      .tab-container {
+        position: absolute;
+        top: 0.5vh;
+        right: 0;
+        display: flex;
+
+        .tab {
+          border: 1px solid rgba(35, 171, 203, 0.5);
+          margin: 0 5px;
+          padding: 0 5px;
+          cursor: pointer;
+          color: rgba(255, 255, 255, 0.8);
+
+          &.active {
+            box-shadow: inset 0px 0px 20px 0px rgba(49, 197, 255, 0.3);
+            color: #fff;
+          }
+
+          &:hover {
+            box-shadow: inset 0px 0px 20px 0px rgba(49, 197, 255, 0.3);
+            color: #fff;
+          }
+        }
+      }
+
+      .subtab-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1vh;
+
+        .tab {
+          margin-right: 1px;
+          color: rgba(255, 255, 255, 0.8);
+          background: #2E538F;
+          cursor: pointer;
+          padding: 0 3px;
+
+          &.active {
+            background: #1BB6F3;
+            color: #FFFFFF;
+          }
+        }
+      }
+
+      .chart {
+        height: 20vh;
+      }
+
+      .detail-container {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        .img {
+          width: 4vw;
+        }
+
+        .img1 {
+          width: 3vw;
+          margin: 0.5vh 0.2vw;
+        }
+
+        .title {
+          font-size: 0.9vw;
+        }
+
+        .num {
+          font-size: 1.2vw;
+          color: rgba(39, 190, 255, 1);
+          font-weight: 600;
+        }
+
+        .num1 {
+          font-size: 1vw;
+          font-weight: 600;
+          color: rgba(39, 190, 255, 1);
+        }
+      }
+    }
+
+  }
+}
+
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: rgba(0, 0, 0, 0);
+  border-radius: 5px;
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #294066;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: #294066;
+}
+
+
+/************************底部图层选择*************************/
+
+.bottomCheckbox .checkBoxs .check .r01::before {
+  background: url("../../assets/bigscreen/icon-level1.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r02::before {
+  background: url("../../assets/bigscreen/icon-level2.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r03::before {
+  background: url("../../assets/bigscreen/icon-level3.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r04::before {
+  background: url("../../assets/bigscreen/icon-level4.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r05::before {
+  background: url("../../assets/bigscreen/icon-level5.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r06::before {
+  background: url("../../assets/bigscreen/icon-level6.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r07::before {
+  background: url("../../assets/bigscreen/icon-level7.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r08::before {
+  background: url("../../assets/bigscreen/icon-level8.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r09::before {
+  background: url("../../assets/bigscreen/icon-level9.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r10::before {
+  background: url("../../assets/bigscreen/icon-level10.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r11::before {
+  background: url("../../assets/bigscreen/icon-level11.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r12::before {
+  background: url("../../assets/bigscreen/icon-level12.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r13::before {
+  background: url("../../assets/bigscreen/icon-level13.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r14::before {
+  background: url("../../assets/bigscreen/icon-level14.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r24::before {
+  background: url("../../assets/bigscreen/icon-level24.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r29::before {
+  background: url("../../assets/bigscreen/icon-level29.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox .checkBoxs .check .r41::before {
+  background: url("../../assets/bigscreen/icon-level41.png") center center / 100% 100% no-repeat;
+}
+
+.bottomCheckbox {
+  position: absolute;
+  bottom: 22px;
+  left: 1vw;
+  width: 10vw;
+  background: rgba(5, 29, 50, 0.9);
+  box-shadow: 0px 0px 10px 0px rgba(38, 188, 247, 0.2), inset 0px 0px 30px 0px rgba(50, 197, 255, 0.3);
+  border-radius: 20px;
+  border: 1px solid #369ACE;
+  padding-bottom: 1vh;
+}
+
+.bottomCheckbox .checkBoxs .check {
+  height: 2.5vh;
+  margin-bottom: 0.1vh;
+  box-sizing: border-box;
+  position: relative;
+  cursor: pointer;
+}
+
+.checkAll {
+  width: 100%;
+  display: flex;
+  padding-left: 0.5vw;
+  padding-top: 0.3vh;
+  margin-bottom: 0.5vw;
+  color: #32C5FF;
+  font-weight: 500;
+  font-size: 1vw;
+}
+
+.checkIcons {
+  height: 1vh;
+  width: 1vw;
+  border-radius: 3px;
+  /* border: 1px solid #959FA5; */
+  background: url("../../assets/bigscreen/IOCN-UNcheck.png") center center / 100% 100% no-repeat;
+  /* transform: scale(0.6); */
+}
+
+.checkAll .checked {
+  background: url("../../assets/bigscreen/icon-checked.png") center center / 100% 100% no-repeat !important;
+}
+
+.bottomCheckbox .checkBoxs .check .checkIcon {
+  height: 1.8vh;
+  width: 1.8vh;
+  position: absolute;
+  top: 0.6vh;
+  left: 0.7vw;
+  border-radius: 3px;
+  /* border: 1px solid #959FA5; */
+  background: url("../../assets/bigscreen/IOCN-UNcheck.png") center center / 100% 100% no-repeat;
+  /* transform: scale(0.6); */
+}
+
+.bottomCheckbox .checkBoxs .checked {
+  background: url("../../assets/bigscreen/icon-checked.png") center center / 100% 100% no-repeat !important;
+}
+
+.bottomCheckbox>.checkBoxs .check .checkLabel {
+  line-height: 3.4vh;
+  font-size: 0.7vw;
+  color: #fff;
+  font-family: PingFangSC-Regular, PingFang SC;
+}
+
+.bottomCheckbox .checkBoxs .check .checkLabel::before {
+  content: '';
+  display: block;
+  width: 2.2vh;
+  height: 2.2vh;
+  position: absolute;
+  top: 0.5vh;
+  left: 1.8vw;
+}
+
+
+.bottomCheckbox .titleHeader {
+  text-align: center;
+  font-size: 0.9vw;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 500;
+  color: #A5E9FA;
+  // border-bottom: 1px solid rgba(151, 151, 151, 0.6);
+  // margin: 0 auto 0.5vh;
+  margin: 0.5vh 0;
+}
+
+.bottomCheckbox .line {
+  width: 10vw;
+  height: 2px;
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 49%, rgba(255, 255, 255, 0) 100%);
+  margin: 0 auto;
+}
+
+.bottomCheckbox .checkList {
+  display: flex;
+  flex-direction: column;
+
+  .busnissGroup {
+    margin: 0.3vh 0;
+    padding-left: 3vw;
+
+    & * {
+      cursor: pointer;
+    }
+  }
+}
+
+.carChoose {
+  width: 9vw;
+  color: #fff;
+  background: #222330;
+  border: 1px solid #353541;
+  position: absolute;
+  top: 4.3vh;
+  left: 1vw;
+  border-radius: 2vh;
+  padding-left: 0.4vw;
+  padding-top: 0.5vh;
+  padding-bottom: 0.5vh;
+  z-index: 9999;
+}
+
