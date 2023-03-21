@@ -29,7 +29,10 @@
     <PopoutVideo
       :popoutVideoShow="popoutVideoShow"
       :cameraUrl="cameraUrl"
-      @fullscreen="fullcameraUrl=cameraUrl;popoutVideoFullScreenShow=true"
+      @fullscreen="
+        fullcameraUrl = cameraUrl;
+        popoutVideoFullScreenShow = true;
+      "
       @close="popoutVideoShow = false"
     />
     <popout-video-full-screen
@@ -74,11 +77,7 @@
       <!-- 左侧开始 -->
       <div class="col2">
         <div
-          class="
-            range-container
-            container
-            animate__animated animate__backInLeft
-          "
+          class="range-container container animate__animated animate__backInLeft"
         >
           <div
             class="container-title"
@@ -150,11 +149,7 @@
           </Row>
         </div>
         <div
-          class="
-            table-container
-            container
-            animate__animated animate__backInLeft animate__slow
-          "
+          class="table-container container animate__animated animate__backInLeft animate__slow"
         >
           <div class="container-title">
             <img src="@/assets/title-arrow.png" alt="" class="img" />
@@ -197,11 +192,7 @@
         </div>
 
         <div
-          class="
-            ecology-container
-            container
-            animate__animated animate__backInLeft animate__slower
-          "
+          class="ecology-container container animate__animated animate__backInLeft animate__slower"
         >
           <div class="container-title">
             <img src="@/assets/title-arrow.png" alt="" class="img" />
@@ -297,7 +288,11 @@
             </div>
           </div>
           <!-- 告警 -->
-          <div class="round" @click="popoutAlarmTable" v-show="alarmEventNum&&alarmEventNum>0">
+          <div
+            class="round"
+            @click="popoutAlarmTable"
+            v-show="alarmEventNum && alarmEventNum > 0"
+          >
             <div class="circle">
               <a>{{ alarmEventNum || 0 }}</a>
             </div>
@@ -378,11 +373,7 @@
       <!-- 右侧开始 -->
       <div class="col4">
         <div
-          class="
-            weather-container
-            container
-            animate__animated animate__backInDown animate__slower
-          "
+          class="weather-container container animate__animated animate__backInDown animate__slower"
         >
           <div class="weather">
             <div>{{ date }}</div>
@@ -391,11 +382,7 @@
           </div>
         </div>
         <div
-          class="
-            video-container
-            container
-            animate__animated animate__backInRight
-          "
+          class="video-container container animate__animated animate__backInRight"
         >
           <div class="container-title">
             <img src="@/assets/title-arrow.png" alt class="img" />
@@ -427,11 +414,7 @@
           </div>
         </div>
         <div
-          class="
-            table-container
-            container
-            animate__animated animate__backInRight animate__slow
-          "
+          class="table-container container animate__animated animate__backInRight animate__slow"
         >
           <div class="container-title">
             <img src="@/assets/title-arrow.png" alt="" class="img" />
@@ -527,11 +510,7 @@
           </div>
         </div>
         <div
-          class="
-            task-container
-            container
-            animate__animated animate__backInRight animate__slower
-          "
+          class="task-container container animate__animated animate__backInRight animate__slower"
         >
           <div class="container-title">
             <img src="@/assets/title-arrow.png" alt="" class="img" />
@@ -985,12 +964,42 @@ export default {
     },
     initMapData() {
       let datas = [
-        { type: 'managementCommittee', name: '太阳山开发区管委会', longitude: 106.580164, latitude: 37.440162 }, // 太阳山开发区管委会
-        { type: 'townGovernment', name: '太阳山镇政府', longitude: 106.579237, latitude: 37.435349 }, // 太阳山镇政府
-        { type: 'policeOffice', name: '公安局太阳山分局', longitude: 106.58243, latitude: 37.437385 }, // 公安局太阳山分局
-        { type: 'townHospital', name: '太阳山镇医院', longitude: 106.583102, latitude: 37.43908 }, // 太阳山镇医院
-        { type: 'fireBrigade', name: '消防救援大队', longitude: 106.602435, latitude: 37.424989 }, // 消防救援大队
-        { type: 'aidStation', name: '医疗救护站', longitude: 106.605216, latitude: 37.342578 } // 医疗救护站
+        {
+          type: 'managementCommittee',
+          name: '太阳山开发区管委会',
+          longitude: 106.580164,
+          latitude: 37.440162
+        }, // 太阳山开发区管委会
+        {
+          type: 'townGovernment',
+          name: '太阳山镇政府',
+          longitude: 106.579237,
+          latitude: 37.435349
+        }, // 太阳山镇政府
+        {
+          type: 'policeOffice',
+          name: '公安局太阳山分局',
+          longitude: 106.58243,
+          latitude: 37.437385
+        }, // 公安局太阳山分局
+        {
+          type: 'townHospital',
+          name: '太阳山镇医院',
+          longitude: 106.583102,
+          latitude: 37.43908
+        }, // 太阳山镇医院
+        {
+          type: 'fireBrigade',
+          name: '消防救援大队',
+          longitude: 106.602435,
+          latitude: 37.424989
+        }, // 消防救援大队
+        {
+          type: 'aidStation',
+          name: '医疗救护站',
+          longitude: 106.605216,
+          latitude: 37.342578
+        } // 医疗救护站
       ]
       let data = []
       let data1 = []
@@ -1001,6 +1010,7 @@ export default {
       let data6 = []
       let data7 = []
       let data8 = []
+
       this.mapData.forEach((item) => {
         switch (item.type) {
           case 'projectWater':
@@ -2043,7 +2053,7 @@ export default {
         if (res.data.code === 0) {
           let data = res.data
           let list = data.datas
-          list.forEach(item => {
+          list.forEach((item) => {
             item.alarmTitle = item.alarmTitle || '--'
             item.alarmContent = item.alarmContent || '--'
           })
@@ -2843,5 +2853,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

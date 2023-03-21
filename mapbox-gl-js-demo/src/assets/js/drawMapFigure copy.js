@@ -59,50 +59,32 @@ function initMap(container) {
   map.on("load", function () {
     //添加天地图底图
     addTDTLayers(map);
-    map.addSource("mapbox-terrain-v2", {
-      type: "vector",
-      url: "mapbox:///mapbox.mapbox-terrain-v2",
-    });
-    // map.addLayer({
-    //   id: "terrain-data",
-    //   type: "line",
-    //   source: "mapbox-terrain-v2",
-    //   "source-layer": "contour",
-    //   layout: {
-    //     "line-join": "round",
-    //     "line-cap": "round",
-    //   },
-    //   paint: {
-    //     "line-color": "#ff69b4",
-    //     "line-width": 1,
-    //   },
-    // });
     // 添加jeojson
-    // map.addLayer({
-    //   id: "china_map",
-    //   type: "fill",
-    //   source: "unitGrid",
-    //   paint: {
-    //     "fill-color": "#0080ff",
-    //     "fill-outline-color": "#4f4f4f",
-    //     "fill-opacity": [
-    //       "case",
-    //       ["boolean", ["feature-state", "hover"], false],
-    //       1,
-    //       0.4,
-    //     ],
-    //   },
-    // });
-    // // axiosData(map);
-    // map.addLayer({
-    //   id: "markers",
-    //   type: "circle",
-    //   source: "interestingPoint",
-    //   paint: {
-    //     "circle-radius": 2,
-    //     "circle-color": "#f3f",
-    //   },
-    // });
+    map.addLayer({
+      id: "china_map",
+      type: "fill",
+      source: "unitGrid",
+      paint: {
+        "fill-color": "#0080ff",
+        "fill-outline-color": "#4f4f4f",
+        "fill-opacity": [
+          "case",
+          ["boolean", ["feature-state", "hover"], false],
+          1,
+          0.4,
+        ],
+      },
+    });
+    // axiosData(map);
+    map.addLayer({
+      id: "markers",
+      type: "circle",
+      source: "interestingPoint",
+      paint: {
+        "circle-radius": 2,
+        "circle-color": "#f3f",
+      },
+    });
     // map.addLayer({
     //   type: 'circle',
     //   source: 'test',
