@@ -38,6 +38,13 @@ export default {
       document.getElementById("longitude").innerHTML = e.lngLat.lng.toFixed(5);
       document.getElementById("latitude").innerHTML = e.lngLat.lat.toFixed(5);
     });
+    // this.map.on("style.load", () => {
+    //   this.rotate();
+    // });
+
+    // this.map.on("moveend", () => {
+    //   this.rotate();
+    // });
     this.map.on("click", (e) => {
       console.log(this.initFlag, this.rotateFlag);
       if (!this.initFlag && this.rotateFlag) {
@@ -52,7 +59,19 @@ export default {
     });
     this.map.on("move", (e) => {});
   },
-  methods: {},
+  methods: {
+    rotate() {
+      let center = this.map.getCenter();
+      this.map.easeTo({
+        center: [center.lng + 40, center.lat],
+        easing: (n) => n,
+        duration: 6000,
+        // zoom: 2,
+        // speed: 0.5,
+      });
+      this.rotateFlag = requestAnimationFrame(this.rotate);
+    },
+  },
 };
 </script>
 <style lang="less" scoped>

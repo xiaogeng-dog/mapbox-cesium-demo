@@ -42,9 +42,9 @@ function initMap(container) {
     center,
     zoom: 3, // starting zoom
     // hash: true,//路由hash
-    dragRotate: false,
+    // dragRotate: false,
     doubleClickZoom: false,
-    // projection: "mercator",
+    projection: "globe",
   });
   /**
    * 加载控件
@@ -68,7 +68,7 @@ function initMap(container) {
     }),
     "bottom-left"
   );
-  // 获取当前位置定位控件
+  // 获取当前位置定位控件(trigger()触发定位)
   map.addControl(
     new mapboxgl.GeolocateControl({
       positionOptions: {
@@ -104,14 +104,14 @@ function initMap(container) {
      */
     // this.map.setLayoutProperty("", "visibility", "visible");
     // TODO加载地形
-    // map.addSource("mapbox-dem", {
-    //   type: "raster-dem",
-    //   url: "mapbox://mapbox.mapbox-terrain-dem-v1",
-    //   tileSize: 512,
-    //   maxzoom: 14,
-    // });
-    // // add the DEM source as a terrain layer with exaggerated height
-    // map.setTerrain({ source: "mapbox-dem", exaggeration: 1.5 });
+    map.addSource("mapbox-dem", {
+      type: "raster-dem",
+      url: "mapbox://mapbox.mapbox-terrain-dem-v1",
+      tileSize: 512,
+      maxzoom: 14,
+    });
+    // add the DEM source as a terrain layer with exaggerated height
+    map.setTerrain({ source: "mapbox-dem", exaggeration: 1.5 });
 
     // TODO在底图之上绘制
     // map.addSource("myCity", {
@@ -211,7 +211,7 @@ function initMap(container) {
   });
 
   map.on("style.load", () => {
-    flyTo(map);
+    // flyTo(map);
     map.setFog({}); // 设置天气
   });
 
