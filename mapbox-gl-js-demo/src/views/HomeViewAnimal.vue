@@ -34,6 +34,10 @@ export default {
     //   console.log(res);
     //   drawMap.drawClusterNet(this.map, res);
     // });
+    this.map.on("load", () => {
+      this.rotate();
+    });
+
     this.map.on("mousemove", function (e) {
       document.getElementById("longitude").innerHTML = e.lngLat.lng.toFixed(5);
       document.getElementById("latitude").innerHTML = e.lngLat.lat.toFixed(5);
@@ -51,8 +55,49 @@ export default {
       }
     });
     this.map.on("move", (e) => {});
+
+    setTimeout(() => {
+      cancelAnimationFrame(this.rotateFlag);
+      this.map.flyTo({
+        center: [118.9853, 33.00679],
+        zoom: 14,
+        speed: 0.4,
+        pitch: 60,
+      });
+      this.map.addSource("mapbox-dem", {
+        type: "raster-dem",
+        url: "mapbox://mapbox.mapbox-terrain-dem-v1",
+        tileSize: 512,
+        maxzoom: 14,
+      });
+      this.map.setTerrain({
+        source: "mapbox-dem",
+        exaggeration: 2,
+      });
+      setTimeout(() => {
+        this.initFlag = false;
+        this.startTime = Date.now();
+        this.rotateCamera(Date.now());
+      }, 14000);
+    }, 20000);
   },
-  methods: {},
+  methods: {
+    // TODO自动旋转 这里的旋转是指按照经纬度进行移动
+    rotate() {
+      let center = this.map.getCenter();
+      this.map.easeTo({
+        center: [center.lng + 40, center.lat],
+        zoom: 2,
+        speed: 0.5,
+      });
+      this.rotateFlag = requestAnimationFrame(this.rotate);
+    },
+    // TODO相机转动 这里的相机转动是一种视角的转动，使用rotateTo函数实现
+    rotateCamera(timestrip) {
+      this.map.rotateTo((timestrip / 100) % 360, { duration: 0 });
+      this.rotateFlag = requestAnimationFrame(this.rotateCamera);
+    },
+  },
 };
 </script>
 <style lang="less" scoped>

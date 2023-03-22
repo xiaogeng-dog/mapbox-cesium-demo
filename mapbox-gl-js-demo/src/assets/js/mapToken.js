@@ -9,16 +9,16 @@ const TDT_token = "a42a5cc72ceffa83582cc329ed0d156f";
  */
 // 矢量底图
 // export const TDT_Underlay = `http://t0.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=${TDT_token}`;
-export const TDT_Underlay = `http://t0.tianditu.gov.cn/vec_w/wmts?tk=${TDT_token}&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=vec&STYLE=default&TILEMATRIXSET=w&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=tiles`;
+// export const TDT_Underlay = `http://t0.tianditu.gov.cn/vec_w/wmts?tk=${TDT_token}&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=vec&STYLE=default&TILEMATRIXSET=w&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=tiles`;
 // 卫星底图
-// export const TDT_Underlay = `http://t0.tianditu.gov.cn/img_w/wmts?tk=${TDT_token}&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=tiles`;
+export const TDT_Underlay = `http://t0.tianditu.gov.cn/img_w/wmts?tk=${TDT_token}&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=tiles`;
 
 /**
  * 注记
  */
 // 矢量注记
 // export const TDT_Note = `http://t0.tianditu.com/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=${TDT_token}`;
-export const TDT_Note = `http://t0.tianditu.gov.cn/cva_w/wmts?tk=${TDT_token}&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=cva&STYLE=default&TILEMATRIXSET=w&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=tiles`;
+// export const TDT_Note = `http://t0.tianditu.gov.cn/cva_w/wmts?tk=${TDT_token}&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=cva&STYLE=default&TILEMATRIXSET=w&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=tiles`;
 // 卫星影像注记
-// export const TDT_Note = `http://t0.tianditu.gov.cn/cia_w/wmts?tk=${TDT_token}&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=cia&STYLE=default&TILEMATRIXSET=w&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=tiles`;
+export const TDT_Note = `http://t0.tianditu.gov.cn/cia_w/wmts?tk=${TDT_token}&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=cia&STYLE=default&TILEMATRIXSET=w&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=tiles`;
 //

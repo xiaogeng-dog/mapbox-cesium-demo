@@ -188,7 +188,7 @@ html,
 body,
 #cesiumContainer {
   width: 100%;
-  height: 100%;
+  height: 800px;
   margin: 0;
   padding: 0;
   overflow: hidden;

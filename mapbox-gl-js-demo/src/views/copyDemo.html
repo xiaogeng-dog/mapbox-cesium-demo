@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>
+    <!-- Load the `mapbox-gl-geocoder` plugin. -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
+      type="text/css"
+    />
+    <div id="info"></div>
+    <style>
+      #map {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+      }
+
+      #select_div {
+        position: absolute;
+        top: 20px;
+        right: 168px;
+        width: 20px;
+        height: 20px;
+        z-index: 100;
+        border-radius: 20%;
+      }
+
+      #coordinate_div {
+        position: absolute;
+        bottom: 60px;
+        left: 20px;
+        color: blue;
+        z-index: 100;
+      }
+
+      #coordinate_div > p {
+        margin: 2px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="select_div">
+      <select name="" id="select">
+        <option value="Select">--Select--</option>
+        <option value="streets-v11">streets-v11</option>
+        <option value="dark-v10">dark-v10</option>
+        <option value="satellite-streets-v11">satellite-streets-v11</option>
+      </select>
+    </div>
+    <div id="coordinate_div">
+      <p>Lng: <span id="longitude"></span></p>
+      <p>Lat: <span id="latitude"></span></p>
+    </div>
+    <div id="map"></div>
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoieWFuZ2ppYW4iLCJhIjoiY2phaG1neno0MXFkNDMzbWhwNWw0bWM4aiJ9.CFmrh0LVWAbmVeed-Xr7wA";
+      const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/streets-v11",
+        center: [-73.935242, 40.73061],
+        zoom: 2,
+        projection: "globe",
+      });
+      map.addControl(new mapboxgl.FullscreenControl());
+      map.addControl(
+        new mapboxgl.GeolocateControl({
+          positionOptions: {
+            enableHighAccuracy: true,
+          },
+          trackUserLocation: true,
+        })
+      );
+      map.addControl(
+        new mapboxgl.ScaleControl({
+          maxWidth: 200,
+          unit: "metric",
+        }),
+        "bottom-left"
+      );
+      map.addControl(
+        new MapboxGeocoder({
+          accessToken: mapboxgl.accessToken,
+          mapboxgl: mapboxgl,
+        }),
+        "top-left"
+      );
+      map.addControl(new mapboxgl.NavigationControl(), "top-left");
+
+      map.on("load", function () {
+        rotate();
+      });
+      map.on("style.load", function () {
+        map.setFog({});
+      });
+      map.on("mousemove", function (e) {
+        document.getElementById("longitude").innerHTML =
+          e.lngLat.lng.toFixed(5);
+        document.getElementById("latitude").innerHTML = e.lngLat.lat.toFixed(5);
+      });
+      map.on("click", function (e) {
+        if (!initFlag && rotateFlag) {
+          // if (rotateFlag) {
+          cancelAnimationFrame(rotateFlag);
+          rotateFlag = null;
+          // } else {
+          //     startTime = Date.now();
+          //     rotateCamera(Date.now())
+          // }
+        }
+      });
+      map.on("move", function (e) {});
+
+      document.querySelector("#select").addEventListener("change", function () {
+        map.setStyle("mapbox://styles/mapbox/" + this.value);
+      });
+
+      setTimeout(() => {
+        cancelAnimationFrame(rotateFlag);
+        map.flyTo({
+          center: [112.9285, 28.18],
+          zoom: 14,
+          speed: 0.4,
+          pitch: 60,
+        });
+        map.addSource("mapbox-dem", {
+          type: "raster-dem",
+          url: "mapbox://mapbox.mapbox-terrain-dem-v1",
+          tileSize: 512,
+          maxzoom: 14,
+        });
+        map.setTerrain({
+          source: "mapbox-dem",
+          exaggeration: 2,
+        });
+        setTimeout(() => {
+          initFlag = false;
+          startTime = Date.now();
+          rotateCamera(Date.now());
+        }, 14000);
+      }, 20000);
+
+      let rotateFlag = false;
+      let initFlag = true;
+      let startTime;
+
+      function rotate() {
+        console.log(11111);
+        let center = map.getCenter();
+        map.easeTo({
+          center: [center.lng + 40, center.lat],
+          zoom: 2,
+          speed: 0.5,
+        });
+        rotateFlag = requestAnimationFrame(rotate);
+      }
+
+      function rotateCamera(timestrip) {
+        console.log(2222);
+        map.rotateTo(((Date.now() - startTime) / 100) % 360, { duration: 0 });
+        rotateFlag = requestAnimationFrame(rotateCamera);
+      }
+    </script>
+  </body>
+</html>
