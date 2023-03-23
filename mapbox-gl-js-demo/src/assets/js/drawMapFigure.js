@@ -2,8 +2,8 @@ import "@/assets/css/mapbox-gl.css";
 import "@/assets/css/mapbox-gl-geocoder.css";
 import { mapboxToken, TDT_Underlay, TDT_Note } from "@/assets/js/mapToken";
 import { center } from "@/assets/js/mapBasis";
-import unitGrid from "@/assets/mapData/金湖部件普查数据 - geoJSON/第三部分：地理编码/地片与区片数据/地片与区片.geojson";
-import interestingPoint from "@/assets/mapData/金湖部件普查数据 - geoJSON/第三部分：地理编码/兴趣点数据/兴趣点.geojson";
+// import unitGrid from "@/assets/mapData/金湖部件普查数据 - geoJSON/第三部分：地理编码/地片与区片数据/地片与区片.geojson";
+// import interestingPoint from "@/assets/mapData/金湖部件普查数据 - geoJSON/第三部分：地理编码/兴趣点数据/兴趣点.geojson";
 import axios from "axios";
 // 导入控件
 import mapboxControls from "@/assets/js/mapboxControls";
@@ -99,73 +99,76 @@ function initMap(container) {
     //   },
     // });
     // TODO添加jeojson
-    map.addLayer({
-      id: "unitGrid",
-      type: "fill",
-      source: "unitGrid",
-      paint: {
-        "fill-color": "#0080ff",
-        "fill-outline-color": "#4f4f4f",
-        "fill-opacity": [
-          "case",
-          ["boolean", ["feature-state", "hover"], false],
-          1,
-          0.4,
-        ],
-      },
-    });
-    // // axiosData(map);
-    map.addLayer({
-      id: "interestingPoint",
-      type: "circle",
-      source: "interestingPoint",
-      paint: {
-        "circle-color": "#4264fb",
-        "circle-radius": 6,
-        "circle-stroke-width": 2,
-        "circle-stroke-color": "#ffffff",
-      },
-    });
+    // map.addLayer({
+    //   id: "unitGrid",
+    //   type: "fill",
+    //   source: "unitGrid",
+    //   paint: {
+    //     "fill-color": "#0080ff",
+    //     "fill-outline-color": "#4f4f4f",
+    //     "fill-opacity": [
+    //       "case",
+    //       ["boolean", ["feature-state", "hover"], false],
+    //       1,
+    //       0.4,
+    //     ],
+    //   },
+    // });
+
+    // // // axiosData(map);
+    // map.addLayer({
+    //   id: "interestingPoint",
+    //   type: "circle",
+    //   source: "interestingPoint",
+    //   paint: {
+    //     "circle-color": "#4264fb",
+    //     "circle-radius": 6,
+    //     "circle-stroke-width": 2,
+    //     "circle-stroke-color": "#ffffff",
+    //   },
+    // });
     // TODO添加popup
     const popup = new mapboxgl.Popup({
       closeButton: false,
       closeOnClick: false,
       maxWidth: "500px",
     });
+    // TODO popup
     // const popup = new mapboxgl.Popup({ closeOnClick: false })
     //   .setLngLat([-96, 37.8])
     //   .setHTML("<h1>Hello World!</h1>")
     //   .addTo(map);
-    map.on("mouseenter", "unitGrid", (e) => {
-      // Change the cursor style as a UI indicator.
-      map.getCanvas().style.cursor = "pointer";
-      // Copy coordinates array.
-      // const coordinates = e.features[0].geometry.coordinates.slice();
-      const coordinates = [e.lngLat.lng, e.lngLat.lat];
-      const description = e.features[0].properties;
-      let descriptionArr = [];
-      for (let item in description) {
-        if (description[item]) {
-          descriptionArr.push(`<div>${item} : ${description[item]}</div>`);
-        }
-      }
-      console.log(descriptionArr);
-      // Ensure that if the map is zoomed out such that multiple
-      // copies of the feature are visible, the popup appears
-      // over the copy being pointed to.
-      while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-      }
 
-      // Populate the popup and set its coordinates
-      // based on the feature found.
-      popup.setLngLat(coordinates).setHTML(descriptionArr.join("")).addTo(map);
-    });
+    // map.on("mouseenter", "unitGrid", (e) => {
+    //   // Change the cursor style as a UI indicator.
+    //   map.getCanvas().style.cursor = "pointer";
+    //   // Copy coordinates array.
+    //   // const coordinates = e.features[0].geometry.coordinates.slice();
+    //   const coordinates = [e.lngLat.lng, e.lngLat.lat];
+    //   const description = e.features[0].properties;
+    //   let descriptionArr = [];
+    //   for (let item in description) {
+    //     if (description[item]) {
+    //       descriptionArr.push(`<div>${item} : ${description[item]}</div>`);
+    //     }
+    //   }
+    //   // console.log(descriptionArr);
+    //   // Ensure that if the map is zoomed out such that multiple
+    //   // copies of the feature are visible, the popup appears
+    //   // over the copy being pointed to.
+    //   while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+    //     coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    //   }
 
-    map.on("mouseleave", "unitGrid", () => {
-      map.getCanvas().style.cursor = "";
-      popup.remove();
-    });
+    //   // Populate the popup and set its coordinates
+    //   // based on the feature found.
+    //   popup.setLngLat(coordinates).setHTML(descriptionArr.join("")).addTo(map);
+    // });
+
+    // map.on("mouseleave", "unitGrid", () => {
+    //   map.getCanvas().style.cursor = "";
+    //   popup.remove();
+    // });
 
     // map.addLayer({
     //   type: "circle",
@@ -284,14 +287,14 @@ function addTDTLayers(map) {
     map.addLayer(Layer_cva);
   }
 
-  map.addSource("unitGrid", {
-    type: "geojson",
-    data: unitGrid,
-  });
-  map.addSource("interestingPoint", {
-    type: "geojson",
-    data: interestingPoint,
-  });
+  // map.addSource("unitGrid", {
+  //   type: "geojson",
+  //   data: unitGrid,
+  // });
+  // map.addSource("interestingPoint", {
+  //   type: "geojson",
+  //   data: interestingPoint,
+  // });
 }
 // 地图漫游
 function flyTo(map) {

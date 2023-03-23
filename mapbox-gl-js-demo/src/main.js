@@ -2,9 +2,9 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-
 import axios from "axios";
-
+import ElementUI from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
 Vue.prototype.$axios = axios;
 // require("@/lib");
 
@@ -14,7 +14,7 @@ Vue.prototype.$axios = axios;
 //   infoBox: false,
 // });
 Vue.config.productionTip = false;
-
+Vue.use(ElementUI);
 // 引入cesium相关文件
 var cesium = require("cesium/Cesium.js");
 var widgets = require("cesium//Widgets/widgets.css");
