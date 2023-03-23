@@ -2,87 +2,35 @@ import "@/assets/css/mapbox-gl.css";
 import "@/assets/css/mapbox-gl-geocoder.css";
 import { mapboxToken, TDT_Underlay, TDT_Note } from "@/assets/js/mapToken";
 import { center } from "@/assets/js/mapBasis";
-import unitGrid from "@/assets/mapData/单元网格.geojson";
-import interestingPoint from "@/assets/mapData/兴趣点.geojson";
+import unitGrid from "@/assets/mapData/金湖部件普查数据 - geoJSON/第三部分：地理编码/地片与区片数据/地片与区片.geojson";
+import interestingPoint from "@/assets/mapData/金湖部件普查数据 - geoJSON/第三部分：地理编码/兴趣点数据/兴趣点.geojson";
 import axios from "axios";
+// 导入控件
+import mapboxControls from "@/assets/js/mapboxControls";
 
-function axiosData(map) {
-  axios.get("/地形图（点）.geojson").then((res) => {
-    console.log(res.data);
-    map.addSource("maps", {
-      type: "geojson",
-      data: res.data,
-    });
-
-    map.addLayer({
-      id: "markers11",
-      type: "raster",
-      source: "maps",
-      // paint: {
-      //   "circle-radius": 2,
-      //   "circle-color": "#f3f",
-      // },
-    });
-  });
-}
-
+const mapboxgl = require("mapbox-gl");
+mapboxgl.accessToken = mapboxToken;
+/**
+ * 初始化地图
+ * @param {*} container  容器
+ * @returns map对象
+ */
 function initMap(container) {
-  const mapboxgl = require("mapbox-gl");
-  // 搜索控件
-  const MapboxGeocoder = require("@mapbox/mapbox-gl-geocoder");
-  // 引入语言包
-  const MapboxLanguage = require("@mapbox/mapbox-gl-language");
-  mapboxgl.accessToken = mapboxToken;
-
   let style = getStyle();
   const map = new mapboxgl.Map({
     container, // container ID
     style: style,
     // style: "mapbox://styles/mapbox/streets-v12", // style URL
     center,
-    zoom: 3, // starting zoom
+    zoom: 2, // starting zoom
+    minZoom: 2,
+    maxZoom: 18,
     // hash: true,//路由hash
     // dragRotate: false,
     doubleClickZoom: false,
     projection: "globe",
   });
-  /**
-   * 加载控件
-   */
-  // 添加搜索控件
-  map.addControl(
-    new MapboxGeocoder({
-      accessToken: mapboxToken,
-      mapboxgl,
-    })
-  );
-  // 加载全屏控件
-  map.addControl(new mapboxgl.FullscreenControl(), "top-right");
-  // 添加导航控件
-  map.addControl(new mapboxgl.NavigationControl(), "top-right");
-  // 加载比例尺
-  map.addControl(
-    new mapboxgl.ScaleControl({
-      maxWidth: 100,
-      unit: "metric",
-    }),
-    "bottom-left"
-  );
-  // 获取当前位置定位控件(trigger()触发定位)
-  map.addControl(
-    new mapboxgl.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true,
-      },
-      trackUserLocation: true,
-    })
-  );
-  //  中文设置 （天地图不支持）If using MapboxLanguage with a Mapbox style, the style must be based on vector tile version 8, e.g. "streets-v11"
-  // map.addControl(
-  //   new MapboxLanguage({
-  //     defaultLanguage: "zh-Hans", // zh-Hant
-  //   })
-  // );
+
   //TODO设置边界
   //   const bounds = [
   //     [117.882223, 24.366902],
@@ -94,7 +42,8 @@ function initMap(container) {
   map.on("load", () => {
     //添加天地图底图
     addTDTLayers(map);
-
+    // 加载控件
+    mapboxControls(map);
     // TODO加载地图的底图 （指定样式图层中布局属性的值。）
     /**
      * layer 要设置布局属性的图层的ID。 (string)
@@ -103,15 +52,16 @@ function initMap(container) {
      *
      */
     // this.map.setLayoutProperty("", "visibility", "visible");
+
     // TODO加载地形
-    map.addSource("mapbox-dem", {
-      type: "raster-dem",
-      url: "mapbox://mapbox.mapbox-terrain-dem-v1",
-      tileSize: 512,
-      maxzoom: 14,
-    });
-    // add the DEM source as a terrain layer with exaggerated height
-    map.setTerrain({ source: "mapbox-dem", exaggeration: 1.5 });
+    // map.addSource("mapbox-dem", {
+    //   type: "raster-dem",
+    //   url: "mapbox://mapbox.mapbox-terrain-dem-v1",
+    //   tileSize: 512,
+    //   maxzoom: 14,
+    // });
+    // // add the DEM source as a terrain layer with exaggerated height
+    // map.setTerrain({ source: "mapbox-dem", exaggeration: 1.5 });
 
     // TODO在底图之上绘制
     // map.addSource("myCity", {
@@ -166,14 +116,57 @@ function initMap(container) {
     });
     // // axiosData(map);
     map.addLayer({
-      id: "markers",
+      id: "interestingPoint",
       type: "circle",
       source: "interestingPoint",
       paint: {
-        "circle-radius": 2,
-        "circle-color": "#f3f",
+        "circle-color": "#4264fb",
+        "circle-radius": 6,
+        "circle-stroke-width": 2,
+        "circle-stroke-color": "#ffffff",
       },
     });
+    // TODO添加popup
+    const popup = new mapboxgl.Popup({
+      closeButton: false,
+      closeOnClick: false,
+      maxWidth: "500px",
+    });
+    // const popup = new mapboxgl.Popup({ closeOnClick: false })
+    //   .setLngLat([-96, 37.8])
+    //   .setHTML("<h1>Hello World!</h1>")
+    //   .addTo(map);
+    map.on("mouseenter", "unitGrid", (e) => {
+      // Change the cursor style as a UI indicator.
+      map.getCanvas().style.cursor = "pointer";
+      // Copy coordinates array.
+      // const coordinates = e.features[0].geometry.coordinates.slice();
+      const coordinates = [e.lngLat.lng, e.lngLat.lat];
+      const description = e.features[0].properties;
+      let descriptionArr = [];
+      for (let item in description) {
+        if (description[item]) {
+          descriptionArr.push(`<div>${item} : ${description[item]}</div>`);
+        }
+      }
+      console.log(descriptionArr);
+      // Ensure that if the map is zoomed out such that multiple
+      // copies of the feature are visible, the popup appears
+      // over the copy being pointed to.
+      while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+      }
+
+      // Populate the popup and set its coordinates
+      // based on the feature found.
+      popup.setLngLat(coordinates).setHTML(descriptionArr.join("")).addTo(map);
+    });
+
+    map.on("mouseleave", "unitGrid", () => {
+      map.getCanvas().style.cursor = "";
+      popup.remove();
+    });
+
     // map.addLayer({
     //   type: "circle",
     //   source: "test",
@@ -211,7 +204,7 @@ function initMap(container) {
   });
 
   map.on("style.load", () => {
-    // flyTo(map);
+    flyTo(map);
     map.setFog({}); // 设置天气
   });
 
@@ -265,7 +258,7 @@ function addTDTLayers(map) {
     type: "raster",
     source: "TDT_VEC",
     minzoom: 0,
-    maxzoom: 22,
+    maxzoom: 18,
   };
   if (!map.getLayer("tdtvec")) {
     map.addLayer(Layer_vec);
@@ -285,7 +278,7 @@ function addTDTLayers(map) {
     type: "raster",
     source: "TDT_CVA",
     minzoom: 0,
-    maxzoom: 22,
+    maxzoom: 18,
   };
   if (!map.getLayer("tdtcva")) {
     map.addLayer(Layer_cva);
@@ -326,4 +319,23 @@ function rotateCamera(map, timestrip) {
   rotateFlag = requestAnimationFrame(rotateCamera);
 }
 
+function axiosData(map) {
+  axios.get("/地形图（点）.geojson").then((res) => {
+    console.log(res.data);
+    map.addSource("maps", {
+      type: "geojson",
+      data: res.data,
+    });
+
+    map.addLayer({
+      id: "markers11",
+      type: "raster",
+      source: "maps",
+      // paint: {
+      //   "circle-radius": 2,
+      //   "circle-color": "#f3f",
+      // },
+    });
+  });
+}
 export default initMap;

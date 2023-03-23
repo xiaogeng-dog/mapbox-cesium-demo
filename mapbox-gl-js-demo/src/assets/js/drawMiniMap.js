@@ -10,8 +10,10 @@ function initMiniMap(container, map) {
     container,
     // style: "mapbox://styles/mapbox/streets-v12", // style URL
     style: style,
-    center,
-    zoom: 2,
+    center: map.getCenter(),
+    zoom: map.getZoom() - 4,
+    minZoom: 0,
+    maxZoom: 18,
   });
   var map_x; //地图的x坐标
   var map_y; //地图的y坐标
@@ -23,6 +25,7 @@ function initMiniMap(container, map) {
     //添加天地图底图
     addTDTLayers(ovmap);
   });
+
   // 拖拽
   function mapdrag() {
     map_x = map.getCenter().lng;
@@ -46,7 +49,7 @@ function initMiniMap(container, map) {
 
   map.on("drag", mapdrag);
   map.on("zoom", mapzoom);
-  let overview = document.getElementById("overviewMap");
+  let overview = document.getElementById(container);
   overview.addEventListener("mouseover", function () {
     //移除地图的拖拽监听
     map.off("drag", mapdrag);
@@ -74,7 +77,7 @@ function getStyle() {
       "mapbox:type": "template",
     },
     center,
-    zoom: 3,
+    zoom: 2,
     bearing: 0,
     pitch: 0,
     sources: {
@@ -138,6 +141,13 @@ function addTDTLayers(map) {
   if (!map.getLayer("tdtcva")) {
     map.addLayer(Layer_cva);
   }
+}
+
+// 添加mask
+function setOverMapMask(map, ovmap) {
+  const zoom = map.getZoom();
+  const center = map.getCenter();
+  ovmap;
 }
 
 export default initMiniMap;

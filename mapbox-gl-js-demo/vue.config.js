@@ -29,7 +29,7 @@ module.exports = defineConfig({
   },
   devServer: {
     // port: 3306,
-    open: true,
+    // open: true,
     // proxy: {
     //   "/api": {
     //     // target: "http://xxx.xxx.xx.xxx:xxxx/", // 开发地址及端口号
@@ -72,7 +72,7 @@ module.exports = defineConfig({
       toUrlUndefined: true, // webpack在cesium中能友好的使用require
     },
     resolve: {
-      extensions: [".js", ".vue", ".json"],
+      extensions: [".js", ".vue", ".json", "less"],
       alias: {
         cesium: path.resolve(__dirname, cesiumSource), // 3 定义别名cesium后，cesium代表了cesiumSource的文件路径
       },
@@ -152,6 +152,8 @@ module.exports = defineConfig({
     module: {
       //   unknownContextRegExp: /^.\/.*$/,
       //   unknownContextCritical: false // 6 不让webpack打印载入特定库时候的警告
+      //在打包的时候如果碰到了css后缀的文件就用css-loader组件加载(可以查看组件的详细介绍,比如压缩css选项)
+      //在打包的时候如果碰到less后准的文件就用less-loader组件加载
       rules: [
         {
           test: /\.geojson$/,
