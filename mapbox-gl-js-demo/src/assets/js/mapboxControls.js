@@ -5,10 +5,12 @@
 import { mapboxToken } from "@/assets/js/mapToken";
 import "@/assets/css/mapbox-gl-controls.less";
 
+import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
+import MapboxDraw from "@mapbox/mapbox-gl-draw";
+
 const MapboxLanguage = require("@mapbox/mapbox-gl-language"); // 引入语言包
 const MapboxGeocoder = require("@mapbox/mapbox-gl-geocoder"); // 搜索控件
 const mapboxgl = require("mapbox-gl");
-import customMiniMap from "@/assets/js/customMiniMap";
 
 export default function addControls(map) {
   // 添加搜索控件
@@ -70,6 +72,19 @@ export default function addControls(map) {
     }
   }
   //   map.addControl(new OverviewMapControl(), "bottom-right");
+  map.addControl(
+    new MapboxDraw({
+      displayControlsDefault: false,
+      // Select which mapbox-gl-draw control buttons to add to the map.
+      controls: {
+        polygon: true,
+        trash: true,
+      },
+      // Set mapbox-gl-draw to draw by default.
+      // The user does not have to click the polygon control button first.
+      defaultMode: "draw_polygon",
+    })
+  );
 
   //  中文设置 （天地图不支持）If using MapboxLanguage with a Mapbox style, the style must be based on vector tile version 8, e.g. "streets-v11"
   // map.addControl(
