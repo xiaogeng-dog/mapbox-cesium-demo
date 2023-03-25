@@ -1,13 +1,12 @@
+const mapboxgl = require("mapbox-gl");
 import "@/assets/css/mapbox-gl.css";
-import "@/assets/css/mapbox-gl-geocoder.css";
-import { mapboxToken, TDT_Underlay, TDT_Note } from "@/assets/js/mapToken";
-import { center } from "@/assets/js/mapBasis";
-import interestingPoint from "@/assets/mapData/金湖部件普查数据 - geoJSON/第三部分：地理编码/兴趣点数据/兴趣点.geojson";
+mapboxgl.accessToken = mapboxToken;
+
 // 导入控件
 import mapboxControls from "@/assets/js/mapboxControls";
+import { mapboxToken, UNDERLAY, NOTE } from "@/assets/js/mapToken";
+import { center } from "@/assets/js/mapBasis";
 
-const mapboxgl = require("mapbox-gl");
-mapboxgl.accessToken = mapboxToken;
 /**
  * 初始化地图
  * @param {*} container  容器
@@ -18,7 +17,7 @@ function initMap(container) {
   const map = new mapboxgl.Map({
     container, // container ID
     style: style,
-    // style: "mapbox://styles/mapbox/streets-v12", // style URL
+    // style: "amap://styles/8c82102538dbf44b27ea935b620fe284", // style URL
     center,
     zoom: 2, // starting zoom
     minZoom: 0,
@@ -29,14 +28,14 @@ function initMap(container) {
     projection: "globe",
   });
   map.on("load", () => {
-    //添加天地图底图
-    addTDTLayers(map);
+    //添加底图
+    addMapLayers(map);
     // 加载控件
     mapboxControls(map);
   });
 
   map.on("style.load", () => {
-    flyTo(map);
+    // flyTo(map);
     map.setFog({}); // 设置天气
   });
 
@@ -69,12 +68,12 @@ function getStyle() {
   return style;
 }
 
-//添加3857坐标系天地图
-function addTDTLayers(map) {
+//添加底图
+function addMapLayers(map) {
   //添加3857天地图矢量source
   var source_vec = {
     type: "raster",
-    tiles: [TDT_Underlay],
+    tiles: UNDERLAY,
     tileSize: 256,
   };
   if (!map.getSource("TDT_VEC")) {
@@ -95,7 +94,7 @@ function addTDTLayers(map) {
   //添加3857天地图矢量注记source
   var source_cva = {
     type: "raster",
-    tiles: [TDT_Note],
+    tiles: NOTE,
     tileSize: 256,
   };
   if (!map.getSource("TDT_CVA")) {
@@ -109,9 +108,9 @@ function addTDTLayers(map) {
     minzoom: 0,
     maxzoom: 18,
   };
-  if (!map.getLayer("tdtcva")) {
-    map.addLayer(Layer_cva);
-  }
+  // if (!map.getLayer("tdtcva")) {
+  //   map.addLayer(Layer_cva);
+  // }
 }
 // 地图漫游
 function flyTo(map) {

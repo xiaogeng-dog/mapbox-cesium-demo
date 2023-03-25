@@ -1,4 +1,4 @@
-import { mapboxToken, TDT_Underlay, TDT_Note } from "@/assets/js/mapToken";
+import { mapboxToken, UNDERLAY, NOTE } from "@/assets/js/mapToken";
 import { center } from "@/assets/js/mapBasis";
 
 function initMiniMap(container, map) {
@@ -99,11 +99,10 @@ function getStyle() {
 
 //添加3857坐标系天地图
 function addTDTLayers(map) {
-  console.log(1111111111);
   //添加3857天地图矢量source
   var source_vec = {
     type: "raster",
-    tiles: [TDT_Underlay],
+    tiles: [UNDERLAY],
     tileSize: 256,
   };
   if (!map.getSource("TDT_VEC")) {
@@ -124,7 +123,7 @@ function addTDTLayers(map) {
   //添加3857天地图矢量注记source
   var source_cva = {
     type: "raster",
-    tiles: [TDT_Note],
+    tiles: [NOTE],
     tileSize: 256,
   };
   if (!map.getSource("TDT_CVA")) {

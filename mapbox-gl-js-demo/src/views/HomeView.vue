@@ -95,16 +95,16 @@ export default {
   },
   mounted() {
     this.map = drawMap("container");
-    drawMiniMap("overviewMap", this.map);
+    // drawMiniMap("overviewMap", this.map);
 
     this.map.on("mousemove", function (e) {
       document.getElementById("longitude").innerHTML = e.lngLat.lng.toFixed(5);
       document.getElementById("latitude").innerHTML = e.lngLat.lat.toFixed(5);
     });
 
-    this.map.on("draw.create", updateArea);
-    this.map.on("draw.delete", updateArea);
-    this.map.on("draw.update", updateArea);
+    // this.map.on("draw.create", updateArea);
+    // this.map.on("draw.delete", updateArea);
+    // this.map.on("draw.update", updateArea);
   },
   methods: {},
 };

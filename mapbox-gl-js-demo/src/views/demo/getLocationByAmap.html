@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>web端引入高德地图 拿到当前定位信息</title>
+
+    <script>
+      window._AMapSecurityConfig = {
+        securityJsCode: "2d2a09cac3cc7bde8982a7acb8df6de7",
+      };
+    </script>
+    <script
+      type="text/javascript"
+      src="https://webapi.amap.com/maps?v=1.4.13&key=57c2e42ce0df64778e2dba73bbb0873a"
+    ></script>
+  </head>
+  <body></body>
+
+  <script>
+    function getLocation() {
+      // 在高德地图jsapi获取浏览器定位  当前为精准定位
+      AMap.plugin("AMap.Geolocation", function () {
+        let geolocation = new AMap.Geolocation({
+          // 是否使用高精度定位，默认：true
+          enableHighAccuracy: true,
+          // 设置定位超时时间，默认：无穷大
+          timeout: 10000,
+        });
+
+        geolocation.getCurrentPosition();
+        AMap.event.addListener(geolocation, "complete", onComplete);
+        AMap.event.addListener(geolocation, "error", onError);
+
+        function onComplete(data) {
+          // data是具体的定位信息
+          console.log(data);
+        }
+
+        function onError(data) {
+          // 定位出错
+          getLatLngLocation();
+        }
+      });
+    }
+    /* TODO: 高德文档介绍 “因为pc设备上大都缺少GPS芯片，
+            所以在PC上的定位主要通过IP精准定位服务，
+            该服务的失败率在5%左右。”
+          解决办法： 使用非精准定位
+           当精准定位失败：在onError事件处理函数中调用方法getLatLngLocation 
+           当前为使用非精准定位 ip定位，查询到当前所在城市的相关信息
+ **/
+    function getLatLngLocation() {
+      AMap.plugin("AMap.CitySearch", function () {
+        let citySearch = new AMap.CitySearch();
+        citySearch.getLocalCity(function (status, result) {
+          if (status === "complete" && result.info === "OK") {
+            // 查询成功，result即为当前所在城市信息
+            // 当前result中包含 查询到的城市编码以及经纬度等信息
+            /*
+                之后进入高德地图的地理编码与逆地理编码，找到逆地理编码的代码
+            **/
+            AMap.plugin("AMap.Geocoder", function () {
+              let geocoder = new AMap.Geocoder({
+                // city 指定进行编码查询的城市，支持传入城市名、adcode 和 citycode
+                city: result.adcode, // 当前位置修改为真实得到的城市code
+              });
+              let lnglat = result.rectangle.split(";")[0].split(","); // 对result的经纬度进行解析
+              geocoder.getAddress(lnglat, function (status, data) {
+                if (status === "complete" && data.info === "OK") {
+                  // data为对应的地理位置详细信息
+                  //这个大神写的有问题，回头有需要要研究这块，打印的是安徽的
+                  console.log(status, data);
+                }
+              });
+            });
+          }
+        });
+      });
+    }
+
+    // getLatLngLocation();
+    getLocation();
+  </script>
+</html>

@@ -1,30 +1,32 @@
 /**
  * 加载控件
  */
-
+const mapboxgl = require("mapbox-gl");
 import { mapboxToken } from "@/assets/js/mapToken";
-import "@/assets/css/mapbox-gl-controls.less";
 
 import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
-
+// TODO:语言包
 const MapboxLanguage = require("@mapbox/mapbox-gl-language"); // 引入语言包
+// TODO:搜索控件
 const MapboxGeocoder = require("@mapbox/mapbox-gl-geocoder"); // 搜索控件
-const mapboxgl = require("mapbox-gl");
+import "@/assets/css/mapbox-gl-geocoder.css";
+// TODO:第三方控件
+import { RulerControl, StylesControl } from "mapbox-gl-controls";
 
 export default function addControls(map) {
-  // 添加搜索控件
+  //TODO 添加搜索控件
   map.addControl(
     new MapboxGeocoder({
       accessToken: mapboxToken,
       mapboxgl,
     })
   );
-  // 加载全屏控件
+  //TODO 加载全屏控件
   map.addControl(new mapboxgl.FullscreenControl(), "top-right");
-  // 添加导航控件
+  //TODO 添加导航控件
   map.addControl(new mapboxgl.NavigationControl(), "top-right");
-  // 加载比例尺
+  //TODO 加载比例尺
   map.addControl(
     new mapboxgl.ScaleControl({
       maxWidth: 100,
@@ -32,7 +34,7 @@ export default function addControls(map) {
     }),
     "bottom-left"
   );
-  // 获取当前位置定位控件(trigger()触发定位)
+  //TODO 获取当前位置定位控件(trigger()触发定位)
   map.addControl(
     new mapboxgl.GeolocateControl({
       positionOptions: {
@@ -42,7 +44,7 @@ export default function addControls(map) {
     })
   );
 
-  // 右下角个人属性控件
+  //TODO 右下角个人属性控件
   map.addControl(
     new mapboxgl.AttributionControl({
       compact: false,
@@ -50,7 +52,7 @@ export default function addControls(map) {
     })
   );
 
-  // 自定义的control (鹰眼)
+  //TODO 自定义的control (鹰眼)
   class OverviewMapControl {
     onAdd(map) {
       this._map = map;
@@ -72,24 +74,47 @@ export default function addControls(map) {
     }
   }
   //   map.addControl(new OverviewMapControl(), "bottom-right");
-  map.addControl(
-    new MapboxDraw({
-      displayControlsDefault: false,
-      // Select which mapbox-gl-draw control buttons to add to the map.
-      controls: {
-        polygon: true,
-        trash: true,
-      },
-      // Set mapbox-gl-draw to draw by default.
-      // The user does not have to click the polygon control button first.
-      defaultMode: "draw_polygon",
-    })
-  );
+  // map.addControl(
+  //   new MapboxDraw({
+  //     displayControlsDefault: false,
+  //     // Select which mapbox-gl-draw control buttons to add to the map.
+  //     controls: {
+  //       polygon: true,
+  //       trash: true,
+  //     },
+  //     // Set mapbox-gl-draw to draw by default.
+  //     // The user does not have to click the polygon control button first.
+  //     defaultMode: "draw_polygon",
+  //   })
+  // );
 
-  //  中文设置 （天地图不支持）If using MapboxLanguage with a Mapbox style, the style must be based on vector tile version 8, e.g. "streets-v11"
+  // TODO 中文设置 （天地图不支持）If using MapboxLanguage with a Mapbox style, the style must be based on vector tile version 8, e.g. "streets-v11"
   // map.addControl(
   //   new MapboxLanguage({
   //     defaultLanguage: "zh-Hans", // zh-Hant
   //   })
   // );
+
+  //TODO 尺子控件
+  map.addControl(
+    new RulerControl({
+      mainColor: "#FFF",
+      secondaryColor: "black",
+      // textAllowOverlap: true,
+    }),
+    "top-right"
+  );
+  map.on("ruler.on", () => console.log("ruler: on"));
+  map.on("ruler.off", () => console.log("ruler: off"));
+  // with miles:
+  // map.addControl(
+  //   new RulerControl({
+  //     units: "miles",
+  //     mainColor: "#FFF",
+  //     labelFormat: (n) => `${n.toFixed(2)} ml`,
+  //   }),
+  //   "top-right"
+  // );
+
+  //
 }
