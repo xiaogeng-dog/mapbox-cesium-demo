@@ -32,6 +32,14 @@ function initMap(container) {
     addMapLayers(map);
     // 加载控件
     mapboxControls(map);
+    map.addSource("mapbox-dem", {
+      type: "raster-dem",
+      url: "mapbox://mapbox.mapbox-terrain-dem-v1",
+      tileSize: 512,
+      maxzoom: 14,
+    });
+    // add the DEM source as a terrain layer with exaggerated height
+    map.setTerrain({ source: "mapbox-dem", exaggeration: 1.5 });
   });
 
   map.on("style.load", () => {
@@ -108,9 +116,9 @@ function addMapLayers(map) {
     minzoom: 0,
     maxzoom: 18,
   };
-  // if (!map.getLayer("tdtcva")) {
-  //   map.addLayer(Layer_cva);
-  // }
+  if (!map.getLayer("tdtcva")) {
+    map.addLayer(Layer_cva);
+  }
 }
 // 地图漫游
 function flyTo(map) {
