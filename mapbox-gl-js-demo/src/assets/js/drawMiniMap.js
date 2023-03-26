@@ -102,7 +102,7 @@ function addTDTLayers(map) {
   //添加3857天地图矢量source
   var source_vec = {
     type: "raster",
-    tiles: [UNDERLAY],
+    tiles: UNDERLAY,
     tileSize: 256,
   };
   if (!map.getSource("TDT_VEC")) {
@@ -123,7 +123,7 @@ function addTDTLayers(map) {
   //添加3857天地图矢量注记source
   var source_cva = {
     type: "raster",
-    tiles: [NOTE],
+    tiles: NOTE,
     tileSize: 256,
   };
   if (!map.getSource("TDT_CVA")) {

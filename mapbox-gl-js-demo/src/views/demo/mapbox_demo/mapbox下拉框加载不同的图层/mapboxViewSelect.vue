@@ -8,7 +8,6 @@
       <p>经度: <span id="longitude"></span></p>
       <p>纬度: <span id="latitude"></span></p>
     </div>
-    <div id="overviewMap" class="overviewMap"></div>
     <div class="select-box">
       网格：
       <el-select
@@ -48,7 +47,6 @@
 // @ is an alias to /src
 const mapboxgl = require("mapbox-gl");
 import drawMap from "@/assets/js/drawMapFigure";
-import drawMiniMap from "@/assets/js/drawMiniMap";
 export default {
   name: "HomeView",
   data() {
@@ -94,34 +92,9 @@ export default {
   },
   mounted() {
     this.map = drawMap("container");
-    drawMiniMap("overviewMap", this.map);
-    // this.listenPage();
-    // this.requestData("cluster_net").then((res) => {
-    //   console.log(res);
-    //   drawMap.drawClusterNet(this.map, res);
-    // });
     this.map.on("mousemove", function (e) {
       document.getElementById("longitude").innerHTML = e.lngLat.lng.toFixed(5);
       document.getElementById("latitude").innerHTML = e.lngLat.lat.toFixed(5);
-    });
-    // this.map.on("style.load", () => {
-    //   this.rotate();
-    // });
-
-    // this.map.on("moveend", () => {
-    //   this.rotate();
-    // });
-    this.map.on("click", (e) => {
-      console.log(this.initFlag, this.rotateFlag);
-      if (!this.initFlag && this.rotateFlag) {
-        if (this.rotateFlag) {
-          cancelAnimationFrame(this.rotateFlag);
-          this.rotateFlag = null;
-        } else {
-          this.startTime = Date.now();
-          this.rotateCamera(Date.now());
-        }
-      }
     });
     this.popup = new mapboxgl.Popup({
       closeButton: true,
@@ -130,7 +103,6 @@ export default {
       focusAfterOpen: true,
       maxWidth: "500px",
     });
-    this.map.on("move", (e) => {});
   },
   methods: {
     async changeGeoJson(value, value2) {
@@ -226,18 +198,6 @@ export default {
           }
         });
     },
-
-    rotate() {
-      let center = this.map.getCenter();
-      this.map.easeTo({
-        center: [center.lng + 40, center.lat],
-        easing: (n) => n,
-        duration: 6000,
-        // zoom: 2,
-        // speed: 0.5,
-      });
-      this.rotateFlag = requestAnimationFrame(this.rotate);
-    },
   },
 };
 </script>
@@ -247,14 +207,6 @@ export default {
   height: 800px;
 }
 
-#overviewMap {
-  width: 200px;
-  height: 200px;
-  position: absolute;
-  right: 20px;
-  bottom: 50px;
-  border: 2px solid gray;
-}
 .mapboxgl-ctrl-attrib {
   display: none;
 }

@@ -37,11 +37,6 @@ export default {
     this.map.on("load", () => {
       this.rotate();
     });
-
-    this.map.on("moveend", () => {
-      this.rotate();
-    });
-
     this.map.on("mousemove", function (e) {
       document.getElementById("longitude").innerHTML = e.lngLat.lng.toFixed(5);
       document.getElementById("latitude").innerHTML = e.lngLat.lat.toFixed(5);

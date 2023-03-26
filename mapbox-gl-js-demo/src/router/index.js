@@ -20,17 +20,6 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/cesiumView.vue"),
   },
   {
-    path: "/loadcgcs2000Demo",
-    name: "loadcgcs2000Demo",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(
-        /* webpackChunkName: "about" */ "../views/demo/mapbox_demo/loadcgcs2000Demo.vue"
-      ),
-  },
-  {
     path: "/pdfPreview",
     name: "pdfPreview",
     // route level code-splitting
@@ -74,6 +63,7 @@ const routes = [
         /* webpackChunkName: "about" */ "../views/demo/js/前端AES、RSA加密解密的方式/rsa.vue"
       ),
   },
+  // ==============================mapbox================================================
   {
     path: "/mapbox_typhoonPath",
     name: "mapbox_typhoonPath",
@@ -85,6 +75,40 @@ const routes = [
         /* webpackChunkName: "about" */ "../views/demo/mapbox_demo/mapbox绘制风圈半径/mapbox_typhoonPath.vue"
       ),
   },
+  {
+    path: "/loadcgcs2000Demo",
+    name: "loadcgcs2000Demo",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/demo/mapbox_demo/loadcgcs2000Demo.vue"
+      ),
+  },
+  {
+    path: "/mapboxViewAnimation",
+    name: "mapboxViewAnimation",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/demo/mapbox_demo/mapbox实现图形自传加镜头拉近动画效果/mapboxViewAnimation.vue"
+      ),
+  },
+  {
+    path: "/mapboxViewSelect",
+    name: "mapboxViewSelect",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/demo/mapbox_demo/mapbox下拉框加载不同的图层/mapboxViewSelect.vue"
+      ),
+  },
+  // ===============================echarts=========================================
   {
     path: "/echarts-wordcloud",
     name: "echarts-wordcloud",
