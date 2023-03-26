@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import HomeView from "../views/mapboxView.vue";
 
 Vue.use(VueRouter);
 
@@ -17,7 +17,7 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+      import(/* webpackChunkName: "about" */ "../views/cesiumView.vue"),
   },
   {
     path: "/loadcgcs2000Demo",
@@ -27,7 +27,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/demo/loadcgcs2000Demo.vue"
+        /* webpackChunkName: "about" */ "../views/demo/mapbox_demo/loadcgcs2000Demo.vue"
       ),
   },
   {

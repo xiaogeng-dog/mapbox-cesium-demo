@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+
+.example span {
+	display: inline-block;
+	background: #ccc;
+}
+/* 解决4：inline-block元素父级设置font-size: 0;，inline-block元素内设置字体大小 */
+.example {
+	font-size: 0;
+}
+.example span {
+	display: inline-block;
+	background: #ccc;
+	font-size: 16px;
+}
+/* 注意： 兼容chrome，取消chrome最小字体大小限制 */
+.example {
+	font-size: 0;
+	-webkit-text-size-adjust:none;
+}
+.example span {
+	display: inline-block;
+	background: #ccc;
+	font-size: 16px;
+}
+
+</style>
+<body>
+    <div class="example">
+        <span>inline-block之间存在空隙</span>
+        <span>inline-block之间存在空隙</span>
+    </div>
+    <!-- 解决1：inline-block元素不换行 -->
+    <div class="example">
+        <span>inline-block之间存在空隙</span><span>inline-block之间存在空隙</span> <!--不换行-->
+    </div>
+    <!-- 解决2：inline-block元素标签不闭合 -->
+    <div class="example">
+        <span>inline-block之间存在空隙
+        <span>inline-block之间存在空隙
+    </div>
+    <!-- 注意：如果有ie兼容需求：最后一个元素标签要闭合 如下 -->
+    <div class="example">
+        <span>inline-block之间存在空隙
+        <span>inline-block之间存在空隙</span>
+    </div>
+    <!-- 解决3：inline-block元素标签之间使用注释 -->
+    <div class="example">
+        <span>inline-block之间存在空隙</span><!--
+        --><span>inline-block之间存在空隙</span>
+    </div>
+
+</body>
+</html>

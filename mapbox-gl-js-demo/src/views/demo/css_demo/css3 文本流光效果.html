@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      background-color: #000;
+    }
+    @keyframes masked-animation {
+      0% {
+        background-position: 0 0;
+      }
+      to {
+        background-position: -100% 0;
+      }
+    }
+
+    p {
+      margin: 200px auto;
+      width: 400px;
+      height: 100px;
+      line-height: 100px;
+      text-align: center;
+      color: hsla(0, 0%, 100%, 0.65);
+      font-weight: 800;
+      font-size: 52px;
+      background-image: -webkit-linear-gradient(
+        left,
+        rgba(0, 255, 255, 1),
+        rgba(255, 255, 255, 1) 25%,
+        rgba(0, 255, 255, 1) 50%,
+        rgba(255, 255, 255, 1) 75%,
+        rgba(0, 255, 255, 1)
+      );
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      -webkit-background-size: 200% 100%;
+      -webkit-animation: masked-animation 2s infinite linear;
+    }
+
+    p:hover {
+      -webkit-animation: masked-animation 0.5s infinite linear;
+    }
+  </style>
+  <body>
+    <p>文字流光效果</p>
+  </body>
+</html>

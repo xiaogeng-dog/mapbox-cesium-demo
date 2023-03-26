@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .wrap {
+      width: 500px;
+      height: 30px;
+      display: flex;
+      background-color: #ccc;
+      overflow: hidden;
+      position: relative;
+    }
+    .text {
+      width: 560px;
+    }
+    p {
+      width: auto;
+      padding: 0;
+      margin: 0;
+      position: absolute;
+      height: 30px;
+      line-height: 30px;
+      left: 34px;
+      white-space: nowrap;
+      display: flex;
+      animation: move linear 5s infinite;
+      overflow: hidden;
+      /* animation-delay: 3s; */
+    }
+    p:hover {
+      animation-play-state: paused;
+    }
+    @keyframes move {
+      0% {
+        left: 34px;
+      }
+      100% {
+        left: -526px;
+      }
+    }
+  </style>
+
+  <body>
+    <!--单行文本左右跑马灯效果  -->
+    <div class="wrap">
+      <p>
+        <span class="text"
+          >这是一段测试文本跑马灯效果的文本，看看效果----------------------</span
+        >
+        <span
+          >这是一段测试文本跑马灯效果的文本，看看效果----------------------</span
+        >
+      </p>
+    </div>
+
+    <!-- 多行不同宽度的文本跑马灯效果 -->
+    <ul id="app">
+      <li class="item">
+        <p>
+          <span class="text"
+            >----这是一段测试文本跑马灯效果的文本，看看效果，看看效果，看看效果---------</span
+          >
+          <span class="temp"
+            >----这是一段测试文本跑马灯效果的文本，看看效果，看看效果，看看效果---------</span
+          >
+        </p>
+      </li>
+      <li class="item">
+        <p>
+          <span class="text"
+            >----这是一段测试文本跑马灯效果的文本，看看效果-------------这是一段测试文本跑马灯效果的文本，看看效果---------</span
+          >
+          <span class="temp"
+            >----这是一段测试文本跑马灯效果的文本，看看效果-------------这是一段测试文本跑马灯效果的文本，看看效果---------</span
+          >
+        </p>
+      </li>
+      <li class="item">
+        <p>
+          <span class="text"
+            >----这是一段测试文本跑马灯效果的文本，看看效果-</span
+          >
+          <span class="temp"
+            >----这是一段测试文本跑马灯效果的文本，看看效果-</span
+          >
+        </p>
+      </li>
+    </ul>
+    <style>
+      .item {
+        width: 500px;
+        height: 30px;
+        display: flex;
+        background-color: #ccc;
+        overflow: hidden;
+        position: relative;
+        margin-bottom: 10px;
+      }
+      .text {
+        width: auto;
+      }
+      p {
+        width: auto;
+        padding: 0;
+        margin: 0;
+        height: 30px;
+        line-height: 30px;
+        white-space: nowrap;
+        display: flex;
+      }
+      p:hover {
+        animation-play-state: paused;
+      }
+      @keyframes move {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      span {
+        padding-right: 100px;
+      }
+    </style>
+  </body>
+  <script>
+    // 1s 20px
+    const item = document.querySelectorAll("#app .item")[0];
+    const itemW = item.clientWidth;
+    const text = document.querySelectorAll(".text");
+    const ps = document.querySelectorAll("p");
+    text.forEach((t, i) => {
+      const tw = t.clientWidth;
+      if (tw > itemW) {
+        const sec = (tw - itemW) / 20;
+        ps[i].style.animation = `move linear ${sec}s infinite`;
+      }
+    });
+  </script>
+</html>

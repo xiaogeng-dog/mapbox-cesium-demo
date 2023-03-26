@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .btn {
+      position: relative;
+      overflow: hidden;
+      background-color: #000;
+      border: 1px solid #00ffff;
+      color: #fff;
+      padding: 4px 10px;
+      outline: none;
+    }
+
+    .btn:after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+      background-repeat: no-repeat;
+      background-position: 50%;
+      transform: scale(10, 10);
+      opacity: 0;
+      transition: transform 0.3s, opacity 0.5s;
+    }
+
+    .btn:active:after {
+      transform: scale(0, 0);
+      opacity: 0.6;
+      transition: 0s;
+    }
+  </style>
+  <body>
+    <div>
+      <button class="btn">点击</button>
+    </div>
+  </body>
+</html>

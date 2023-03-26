@@ -47,7 +47,7 @@
 <script>
 // @ is an alias to /src
 const mapboxgl = require("mapbox-gl");
-
+import interestingPoint from "@/assets/mapData/china.geojson";
 import drawMap from "@/assets/js/drawMapFigure";
 import drawMiniMap from "@/assets/js/drawMiniMap";
 export default {
@@ -100,6 +100,24 @@ export default {
     this.map.on("mousemove", function (e) {
       document.getElementById("longitude").innerHTML = e.lngLat.lng.toFixed(5);
       document.getElementById("latitude").innerHTML = e.lngLat.lat.toFixed(5);
+    });
+
+    this.map.on("load", () => {
+      this.map.addSource("interestingPoint", {
+        type: "geojson",
+        data: interestingPoint,
+      });
+      this.map.addLayer({
+        type: "fill",
+        source: "interestingPoint",
+        maxzoom: 14,
+        id: "10",
+        paint: { "fill-color": "#60D330", "fill-outline-color": "#000000" },
+        // layout: {
+        //   "fill-sort-key": 100000,
+        // },
+      });
+      // this.map.moveLayer("tdtvec", "10");
     });
 
     // this.map.on("draw.create", updateArea);
