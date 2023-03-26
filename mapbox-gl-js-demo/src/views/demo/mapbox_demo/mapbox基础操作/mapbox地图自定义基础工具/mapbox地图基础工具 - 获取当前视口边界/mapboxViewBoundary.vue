@@ -5,11 +5,15 @@
       <p>经度: <span id="longitude"></span></p>
       <p>纬度: <span id="latitude"></span></p>
     </div>
+    <div class="btn-list">
+      <el-button type="primary" size="mini" @click="getBounds()"
+        >获取当前视口边界</el-button
+      >
+    </div>
   </div>
 </template>
 
 <script>
-const mapboxgl = require("mapbox-gl");
 import drawMap from "@/assets/js/drawMapFigure";
 export default {
   name: "HomeView",
@@ -25,9 +29,22 @@ export default {
 
     this.map.on("load", () => {});
   },
-  methods: {},
+  methods: {
+    // 获取视口边界
+    getBounds() {
+      const bounds = this.map.getBounds();
+      const result = {
+        lngMax: bounds._ne.wrap().lng, // 最大经度
+        lngMin: bounds._sw.wrap().lng, // 最小经度
+        latMax: bounds._ne.wrap().lat, // 最大纬度
+        latMin: bounds._sw.wrap().lat, // 最小纬度
+      };
+      console.log(result);
+    },
+  },
 };
 </script>
+
 <style lang="less" scoped>
 #container {
   width: 100%;
@@ -48,5 +65,10 @@ export default {
 
 #coordinate_div > p {
   margin: 2px;
+}
+.btn-list {
+  position: fixed;
+  top: 100px;
+  left: 100px;
 }
 </style>
