@@ -39,6 +39,17 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/demo/pdfPreview.vue"),
   },
+  {
+    path: "/encodeGeojson",
+    name: "encodeGeojson",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/demo/mapApi_demo/压缩解压geojson数据/encodeGeojson.vue"
+      ),
+  },
 ];
 
 const router = new VueRouter({

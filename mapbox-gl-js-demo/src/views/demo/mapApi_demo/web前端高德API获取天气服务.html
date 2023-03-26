@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>web端引入高德地图 拿到当前定位信息</title>
+  </head>
+  <body></body>
+
+  <script>
+    fetch(
+      "https://restapi.amap.com/v3/weather/weatherInfo?key=891ffee5b74be82478ee777664f8657a&city=320100"
+    )
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json();
+        } else {
+          return {};
+        }
+      })
+      .then((data) => {
+        console.log(data);
+      });
+  </script>
+</html>
