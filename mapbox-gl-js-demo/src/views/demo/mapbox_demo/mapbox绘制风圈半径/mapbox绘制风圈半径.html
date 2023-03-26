@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>绘制风圈半径</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <script src="https://cdn.bootcdn.net/ajax/libs/proj4js/2.7.5/proj4.js"></script>
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.js"></script>
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    /*
+    1、引入mapboxgljs：https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.js
+    2、涌入mapboxglcss：https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.css
+    3、引入proj4js（用于坐标转换）：https://cdn.bootcdn.net/ajax/libs/proj4js/2.7.5/proj4.js
+    **/
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoieGlhb2dlbmciLCJhIjoiY2xmY2hwazU2MGJpOTN5bGxjancyYWQ0MyJ9.kobS8uu_eYtfNiEvwL_Xbw";
+      var map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/streets-v11",
+        center: [120, 30],
+        zoom: 3,
+      });
+
+      map.on("load", function () {
+        addTyphoonCircle({
+          points: [
+            {
+              longitude: 120,
+              latitude: 30,
+              radius7: 1,
+              radius7_quad: {
+                ne: 250,
+                nw: 160,
+                sw: 150,
+                se: 220,
+              },
+              radius10: 1,
+              radius10_quad: {
+                ne: 250,
+                nw: 160,
+                sw: 150,
+                se: 220,
+              },
+              radius12: 1,
+              radius12_quad: {
+                ne: 250,
+                nw: 160,
+                sw: 150,
+                se: 220,
+              },
+            },
+            {
+              longitude: 130,
+              latitude: 30,
+              radius7: 1,
+              radius7_quad: {
+                ne: 260,
+                nw: 170,
+                sw: 130,
+                se: 210,
+              },
+              radius10: 1,
+              radius10_quad: {
+                ne: 260,
+                nw: 170,
+                sw: 130,
+                se: 210,
+              },
+              radius12: 1,
+              radius12_quad: {
+                ne: 260,
+                nw: 170,
+                sw: 130,
+                se: 210,
+              },
+            },
+          ],
+          tfbh: "1",
+        });
+      });
+
+      function addTyphoonCircle(data) {
+        var points = data.points;
+        var geojson = {
+          type: "FeatureCollection",
+          features: [],
+        };
+        for (var i = 0; i < points.length; i++) {
+          var p = points[i];
+          var center = [p.longitude, p.latitude];
+          // 7级风圈
+          if (p.radius7 > 0) {
+            var coords = getCircleCoords(center, p.radius7_quad);
+            geojson.features.push({
+              type: "Feature",
+              geometry: {
+                type: "Polygon",
+                coordinates: coords,
+              },
+              properties: {
+                index: i,
+                radius: "7",
+              },
+            });
+          }
+          // 10级风圈
+          if (p.radius10 > 0) {
+            var coords = getCircleCoords(center, p.radius10_quad);
+            geojson.features.push({
+              type: "Feature",
+              geometry: {
+                type: "Polygon",
+                coordinates: coords,
+              },
+              properties: {
+                index: i,
+                radius: "10",
+              },
+            });
+          }
+          // 12级风圈
+          if (p.radius12 > 0) {
+            var coords = getCircleCoords(center, p.radius12_quad);
+            geojson.features.push({
+              type: "Feature",
+              geometry: {
+                type: "Polygon",
+                coordinates: coords,
+              },
+              properties: {
+                index: i,
+                radius: "12",
+              },
+            });
+          }
+        }
+        map.addSource("circle-source-" + data.tfbh, {
+          type: "geojson",
+          data: geojson,
+        });
+        map.addLayer({
+          id: "circle-layer-" + data.tfbh,
+          type: "fill",
+          source: "circle-source-" + data.tfbh,
+          paint: {
+            "fill-color": [
+              "match",
+              ["get", "radius"],
+              "7",
+              "#00bab2",
+              "10",
+              "#ffff00",
+              "#da7341",
+            ],
+            "fill-opacity": 0.2,
+            "fill-outline-color": [
+              "match",
+              ["get", "radius"],
+              "7",
+              "#00bab2",
+              "10",
+              "#ffff00",
+              "#da7341",
+            ],
+          },
+        });
+      }
+
+      function getCircleCoords(center, radiusData) {
+        center = proj4(proj4("EPSG:4326"), proj4("EPSG:3857"), center);
+        let _coords = [];
+        let _angInterval = 6;
+        let _pointNums = 360 / (_angInterval * 4);
+        let quadrant = {
+          // 逆时针算角度
+          0: "ne",
+          1: "nw",
+          2: "sw",
+          3: "se",
+        };
+        for (let i = 0; i < 4; i++) {
+          let _r = parseFloat(radiusData[quadrant[i]]) * 1000; // 单位是km
+          if (!_r) _r = 0;
+          for (let j = i * _pointNums; j <= (i + 1) * _pointNums; j++) {
+            let _ang = _angInterval * j;
+            let x = center[0] + _r * Math.cos((_ang * Math.PI) / 180);
+            let y = center[1] + _r * Math.sin((_ang * Math.PI) / 180);
+            var coord = proj4(proj4("EPSG:3857"), proj4("EPSG:4326"), [x, y]);
+            _coords.push(coord);
+          }
+        }
+
+        return [_coords];
+      }
+    </script>
+  </body>
+</html>

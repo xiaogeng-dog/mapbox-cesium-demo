@@ -72,6 +72,17 @@ const routes = [
         /* webpackChunkName: "about" */ "../views/demo/js/前端AES、RSA加密解密的方式/rsa.vue"
       ),
   },
+  {
+    path: "/mapbox_typhoonPath",
+    name: "mapbox_typhoonPath",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/demo/mapbox_demo/mapbox绘制风圈半径/mapbox_typhoonPath.vue"
+      ),
+  },
 ];
 
 const router = new VueRouter({
