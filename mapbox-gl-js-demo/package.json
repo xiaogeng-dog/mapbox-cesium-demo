@@ -19,6 +19,8 @@
     "core-js": "^3.8.3",
     "crypto-js": "^4.1.1",
     "D": "^1.0.0",
+    "echarts": "^5.4.2",
+    "echarts-wordcloud": "^2.0.0",
     "element-ui": "^2.15.13",
     "file-saver": "^2.0.5",
     "jsencrypt": "^3.3.2",

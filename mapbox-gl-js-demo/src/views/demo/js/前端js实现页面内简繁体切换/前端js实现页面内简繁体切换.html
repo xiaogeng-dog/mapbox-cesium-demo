@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="http://winserver.geointech.cn:8040/language/language.js"></script>
+  </head>
+  <body>
+    <button id="clickbtn">点击切换简繁体</button>
+    <div>
+      鲁迅（1881年9月25日～1936年10月19日），原名周樟寿，后改名周树人，字豫山，后改字豫才，浙江绍兴人。著名文学家、思想家、革命家、教育家
+      [179] 、民主战士，新文化运动的重要参与者，中国现代文学的奠基人之一。
+      早年与厉绥之和钱均夫同赴日本公费留学，于日本仙台医科专门学校肄业。 [183]
+      “鲁迅”，1918年发表《狂人日记》时所用的笔名，也是最为广泛的笔名。 [1-7]
+      鲁迅一生在文学创作、文学批评、思想研究、文学史研究、翻译、美术理论引进、基础科学介绍和古籍校勘与研究等多个领域具有重大贡献。他对于五四运动以后的中国社会思想文化发展具有重大影响，蜚声世界文坛，尤其在韩国、日本思想文化领域有极其重要的地位和影响，被誉为“二十世纪东亚文化地图上占最大领土的作家”。
+      [8-10] 毛泽东曾评价：“鲁迅的方向，就是中华民族新文化的方向。”
+    </div>
+    <script>
+      window.onload = () => {
+        // var nowLanauage = getCookie('zh_choose') || '' // 当前语言
+        // console.log(nowLanauage) // 简体 s  繁体 t  默认 n
+        const btn = document.getElementById("clickbtn");
+        btn.addEventListener("click", async function () {
+          await switchZHLanguage(true);
+          // nowLanauage = getCookie('zh_choose')
+        });
+        /**
+         * 切换简体繁体语言
+         * @param isSwitch {Boolean} 是简繁体之间切换 还是直接根据当前已选类型直接转换文本
+         */
+        function switchZHLanguage(isSwitch = false) {
+          return new Promise((resolve) => {
+            const { zhTran } = window;
+            const currentType = getCookie("zh_choose");
+            if (isSwitch) {
+              currentType === "s" ? zhTran("t") : zhTran("s");
+              resolve();
+            } else {
+              setTimeout(() => {
+                zhTran(currentType);
+                resolve();
+              }, 0);
+            }
+          });
+        }
+        //获取cookie的方法：
+        function getCookie(c_name) {
+          if (document.cookie.length > 0) {
+            c_start = document.cookie.indexOf(c_name + "=");
+            if (c_start != -1) {
+              c_start = c_start + c_name.length + 1;
+              c_end = document.cookie.indexOf(";", c_start);
+              if (c_end == -1) {
+                c_end = document.cookie.length;
+              }
+              return unescape(document.cookie.substring(c_start, c_end));
+            }
+          }
+          return "";
+        }
+      };
+    </script>
+  </body>
+</html>
