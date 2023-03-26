@@ -58,7 +58,18 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/demo/js/前端AES加密解密的方式/aes.vue"
+        /* webpackChunkName: "about" */ "../views/demo/js/前端AES、RSA加密解密的方式/aes.vue"
+      ),
+  },
+  {
+    path: "/rsa",
+    name: "rsa",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/demo/js/前端AES、RSA加密解密的方式/rsa.vue"
       ),
   },
 ];

@@ -3,6 +3,18 @@
 </template>
 
 <script>
+/**
+ * 应项目需要需要使用AES进行数据的加密解密。
+ *
+ * npm install crypto-js -S
+ */
+/**
+ * @author xiaogeng
+ * @date 2023/03/26 12:18 下午
+ * @description 使用AES加密解密
+ * @returns CryptoFiles的实例化对象
+ **/
+
 import aec_secret from "./aes_crypto";
 export default {
   mounted() {

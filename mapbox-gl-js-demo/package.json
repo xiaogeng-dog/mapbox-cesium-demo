@@ -21,6 +21,7 @@
     "D": "^1.0.0",
     "element-ui": "^2.15.13",
     "file-saver": "^2.0.5",
+    "jsencrypt": "^3.3.2",
     "json-loader": "^0.5.7",
     "mapbox-gl": "^2.13.0",
     "mapbox-gl-controls": "^2.3.5",
