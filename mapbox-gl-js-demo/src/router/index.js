@@ -317,6 +317,17 @@ const routes = [
         /* webpackChunkName: "about" */ "../views/demo/mapbox_demo/mapbox基础操作/mapbox的测距功能/mapboxViewMeasureDistance.vue"
       ),
   },
+  {
+    path: "/mapboxAdvanced",
+    name: "mapboxAdvanced",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "@/views/demo/mapbox_demo/mapbox进阶操作/mapboxAdvanced"
+      ),
+  },
   // ===============================echarts=========================================
   {
     path: "/echarts-wordcloud",

@@ -102,23 +102,7 @@ export default {
       document.getElementById("latitude").innerHTML = e.lngLat.lat.toFixed(5);
     });
 
-    this.map.on("load", () => {
-      this.map.addSource("interestingPoint", {
-        type: "geojson",
-        data: interestingPoint,
-      });
-      this.map.addLayer({
-        type: "fill",
-        source: "interestingPoint",
-        maxzoom: 14,
-        id: "10",
-        paint: { "fill-color": "#60D330", "fill-outline-color": "#000000" },
-        // layout: {
-        //   "fill-sort-key": 100000,
-        // },
-      });
-      // this.map.moveLayer("tdtvec", "10");
-    });
+    this.map.on("load", () => {});
 
     // this.map.on("draw.create", updateArea);
     // this.map.on("draw.delete", updateArea);

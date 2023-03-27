@@ -3,7 +3,7 @@ const mapboxToken =
 const cesiumToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjM2M1YWM2My1kOGQyLTRlZDMtODg1OS00YTg4YjdlYzIxYzkiLCJpZCI6MTI5MzU0LCJpYXQiOjE2NzkyMzM0Mjh9.0Qbw5zRJd0TC8sd5QvY40t2mtEeSroN0M4Jqfc3_7mE";
 const TDT_token = "a42a5cc72ceffa83582cc329ed0d156f";
-
+const GD_WebService_key = "891ffee5b74be82478ee777664f8657a";
 // 投影类型 （c:4490的2000坐标系，w:3857墨卡托投影坐标系）mapbox只支持墨卡托投影坐标系
 const TDT_ProjectionType = "w";
 /**
@@ -67,4 +67,4 @@ let GD_Underlay = [
 const UNDERLAY = GD_Underlay;
 const NOTE = TDT_Note;
 
-export { UNDERLAY, NOTE, cesiumToken, mapboxToken };
+export { UNDERLAY, NOTE, cesiumToken, mapboxToken, GD_WebService_key };
