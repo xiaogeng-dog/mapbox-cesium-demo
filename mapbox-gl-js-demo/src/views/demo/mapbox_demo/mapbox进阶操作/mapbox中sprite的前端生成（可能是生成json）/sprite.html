@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>sprite.json</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <script>
+      const size = 35;
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      const icons = ["abc", "cbc", "cmbc", "icbc", "cbc1"];
+      let json = {};
+      let promises = [];
+      let w = 0;
+      let h = 0;
+      icons.forEach((icon, index) => {
+        const img = new Image();
+        img.src = `icons/${icon}.png`;
+        const y = index * size;
+        promises.push(
+          new Promise((resolve) => {
+            img.onload = () => {
+              w = img.width > w ? img.width : w;
+              h += img.height;
+              resolve(img);
+            };
+          })
+        );
+      });
+      Promise.all(promises).then((imgs) => {
+        canvas.width = w;
+        canvas.height = h;
+        let y = 0;
+        imgs.forEach((img, index) => {
+          json[icons[index]] = {
+            x: 0,
+            y: y,
+            width: img.width,
+            height: img.height,
+            pixelRatio: 1,
+          };
+          ctx.drawImage(img, 0, y);
+          y += img.height;
+        });
+        console.log(JSON.stringify(json));
+      });
+    </script>
+  </body>
+</html>

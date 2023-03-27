@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body,
+      #map {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+    <script>
+      const libPath = "http://localhost:8080/mapbox/";
+      const style = {
+        version: 8,
+        name: "lzugis",
+        sprite:
+          "http://127.0.0.1:5500/src/views/demo/mapbox_demo/mapbox%E8%BF%9B%E9%98%B6%E6%93%8D%E4%BD%9C/mapbox%E4%B8%ADsprite%E7%9A%84%E5%89%8D%E7%AB%AF%E7%94%9F%E6%88%90/sprite.html",
+        sources: {
+          nav: {
+            type: "raster",
+            tiles: [
+              "https://webst01.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}",
+            ],
+            tileSize: 256,
+          },
+        },
+        layers: [
+          {
+            id: "nav",
+            type: "raster",
+            source: "nav",
+            minzoom: 0,
+            maxzoom: 17,
+          },
+        ],
+      };
+      const dom = document.getElementById("map");
+      window.map = new mapboxgl.Map({
+        container: dom,
+        style: style,
+        center: [103.081163, 37.1612],
+        zoom: 3.5,
+        minZoom: 2,
+        maxZoom: 18,
+      });
+
+      map.on("load", (e) => {
+        map.addSource("geojson", {
+          type: "geojson",
+          data: "data/point.geojson",
+        });
+        map.addLayer({
+          id: "geojson",
+          source: "geojson",
+          type: "symbol",
+          layout: {
+            "icon-image": "cbc",
+            "icon-size": 0.6,
+            "icon-allow-overlap": true,
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
