@@ -77,10 +77,12 @@ module.exports = defineConfig({
         cesium: path.resolve(__dirname, cesiumSource), // 3 定义别名cesium后，cesium代表了cesiumSource的文件路径
       },
 
-      // fallback: {
-      //   path: false,
-      //   fs: false,
-      // },
+      fallback: {
+        // path: false,
+        // fs: false,
+        // net: false,
+        // tls: false,
+      },
     },
     plugins: [
       // // 4
