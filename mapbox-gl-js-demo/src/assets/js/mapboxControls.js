@@ -64,7 +64,7 @@ export default function addControls(map) {
       //   this._container.style.width = w + "px";
       //   this._container.style.height = h + "px";
       //   this._container.textContent = "Hello, world";
-      customMiniMap(this._container, map);
+      // customMiniMap(this._container, map);
       return this._container;
     }
 
@@ -73,20 +73,51 @@ export default function addControls(map) {
       this._map = undefined;
     }
   }
-  //   map.addControl(new OverviewMapControl(), "bottom-right");
-  // map.addControl(
-  //   new MapboxDraw({
-  //     displayControlsDefault: false,
-  //     // Select which mapbox-gl-draw control buttons to add to the map.
-  //     controls: {
-  //       polygon: true,
-  //       trash: true,
-  //     },
-  //     // Set mapbox-gl-draw to draw by default.
-  //     // The user does not have to click the polygon control button first.
-  //     defaultMode: "draw_polygon",
-  //   })
-  // );
+  map.addControl(new OverviewMapControl(), "bottom-right");
+  map.addControl(
+    new MapboxDraw({
+      displayControlsDefault: false,
+      // Select which mapbox-gl-draw control buttons to add to the map.
+      controls: {
+        polygon: true,
+        trash: true,
+        point: true,
+      },
+      styles: [
+        {
+          id: "highlight-active-points",
+          type: "circle",
+          filter: [
+            "all",
+            ["==", "$type", "Point"],
+            ["==", "meta", "feature"],
+            ["==", "active", "true"],
+          ],
+          paint: {
+            "circle-radius": 7,
+            "circle-color": "#000000",
+          },
+        },
+        {
+          id: "points-are-blue",
+          type: "circle",
+          filter: [
+            "all",
+            ["==", "$type", "Point"],
+            ["==", "meta", "feature"],
+            ["==", "active", "false"],
+          ],
+          paint: {
+            "circle-radius": 5,
+            "circle-color": "#000088",
+          },
+        },
+      ],
+      // Set mapbox-gl-draw to draw by default.
+      // The user does not have to click the polygon control button first.
+      // defaultMode: "draw_polygon",
+    })
+  );
 
   // TODO 中文设置 （天地图不支持）If using MapboxLanguage with a Mapbox style, the style must be based on vector tile version 8, e.g. "streets-v11"
   // map.addControl(
@@ -96,14 +127,14 @@ export default function addControls(map) {
   // );
 
   //TODO 尺子控件
-  map.addControl(
-    new RulerControl({
-      mainColor: "#FFF",
-      secondaryColor: "black",
-      // textAllowOverlap: true,
-    }),
-    "top-right"
-  );
+  // map.addControl(
+  //   new RulerControl({
+  //     mainColor: "#FFF",
+  //     secondaryColor: "black",
+  //     // textAllowOverlap: true,
+  //   }),
+  //   "top-right"
+  // );
   map.on("ruler.on", () => console.log("ruler: on"));
   map.on("ruler.off", () => console.log("ruler: off"));
   // with miles:
