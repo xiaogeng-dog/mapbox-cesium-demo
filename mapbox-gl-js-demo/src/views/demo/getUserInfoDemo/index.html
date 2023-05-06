@@ -1,0 +1,651 @@
+
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>测试JSSDK</title>
+<script type="text/javascript" src="jsbc-jssdk-dev.js"></script>
+<body style="background-color: royalblue;">
+<br><br>
+<a id="getSystemInfo"><h1>getSystemInfo</h1></a></br>
+<a id="chooseImage"><h1>chooseImage</h1></a></br>
+<a id="getNetworkType"><h1>getNetworkType</h1></a></br>
+<a id="chooseVideo"><h1>chooseVideo</h1></a></br>
+<a id="previewImage"><h1>previewImage</h1></a></br>
+<a id="startRecord"><h1>startRecord</h1></a></br>
+<a id="stopRecord"><h1>stopRecord</h1></a></br>
+<a id="playVoice"><h1>playVoice</h1></a></br>
+<a id="pauseVoice"><h1>pauseVoice</h1></a></br>
+<a id="stopVoice"><h1>stopVoice</h1></a></br>
+<a id="getLocation"><h1>getLocation</h1></a></br>
+<a id="openAPP"><h1>openAPP</h1></a></br>
+<a id="openArticle"><h1>openArticle</h1></a></br>
+<a id="readArticle"><h1>readArticle</h1></a></br>
+<a id="getCommand"><h1>getCommand</h1></a></br>
+<a id="getWebToken"><h1>getWebToken</h1></a></br>
+<a id="getUserMobile"><h1>getUserMobile</h1></a></br>
+<a id="getUserInfo"><h1>getUserInfo</h1></a></br>
+<a id="getUserInfoForce"><h1>getUserInfoForce</h1></a></br>
+<a id="onMenuShareTimeline"><h1>onMenuShareTimeline</h1></a></br>
+<a id="onMenuShareAppMessage"><h1>onMenuShareAppMessage</h1></a></br>
+<a id="onMenuShareQQ"><h1>onMenuShareQQ</h1></a></br>
+<a id="onMenuShareSina"><h1>onMenuShareSina</h1></a></br>
+<a id="goToMainPage"><h1>goToMainPage</h1></a></br>
+<a id="uploadImage"><h1>uploadImage</h1></a></br>
+<a id="uploadVoice"><h1>uploadVoice</h1></a></br>
+<a id="uploadVideo"><h1>uploadVideo</h1></a></br>
+<a id="scanQRCode"><h1>scanQRCode</h1></a></br>
+<a id="closePage"><h1>closePage</h1></a></br>
+<a id="needShowClosePage"><h1>needShowClosePage</h1></a></br>
+<a id="needShowNavBar0"><h1>needShowNavBar（隐藏）</h1></a></br>
+<a id="needShowNavBar1"><h1>needShowNavBar（显示）</h1></a></br>
+<a id="pushToGovPay"><h1>pushToGovPay</h1></a></br>
+<a id="verifyIDCard"><h1>verifyIDCard</h1></a></br>
+<a id="getUserToken"><h1>getUserToken</h1></a></br>
+<a id="downloadImage"><h1>downloadImage</h1></a></br>
+<a id="logoutFinish"><h1>logoutFinish</h1></a></br>
+<a id="openWXminiProgram"><h1>openWXminiProgram</h1></a></br>
+<a id="jsbcPay"><h1>jsbcPay</h1></a></br>
+<a id="shareWeiXinMiniProgram"><h1>shareWeiXinMiniProgram</h1></a></br>
+<a id="hideShareButton"><h1>隐藏右上角分享按钮</h1></a></br>
+<a id="showShareButton"><h1>显示右上角分享按钮</h1></a></br>
+
+<input style="width: 400px;height: 50px;font-size: 24px;" id="jsbcJSSDKCanIUseInput" type="text" name="" placeholder="getUserInfo.object.showSecret"></input>
+<a id="jsbcJSSDKCanIUse"><h1>jsbcJSSDKCanIUse</h1></a></br>
+
+</body>
+</html>
+<script>
+        var aTag = document.getElementById('getSystemInfo');
+        aTag.addEventListener('click', function(){
+            jsbc.getSystemInfo({
+                success(data){
+                    console.log(data);
+                    var str = JSON.stringify(data);
+                    alert(str);
+                },
+            });
+        }, false);
+        aTag = document.getElementById('chooseImage');
+        aTag.addEventListener('click', function(){
+            jsbc.chooseImage({
+                count:9,// 默认9
+                sizeType:['original', 'compressed'],
+                sourceType: ['album'],
+                success(res){
+                    console.log(res);
+                    //alert(res.localIds);
+                    var img1 = document.getElementById("image1");
+                    img1.src = res.localIds[0];
+                    if (res.localIds.length > 1) {
+                        var img2 = document.getElementById("image2");
+                        img2.src = res.localIds[1];
+                    } else {
+                        img2.src = '';
+                    }
+                },
+            });
+        }, false);
+        aTag = document.getElementById('getNetworkType');
+        aTag.addEventListener('click', function(){ 
+            jsbc.getNetworkType({
+                success(res){
+                    console.log(res);
+                    var str = JSON.stringify(res);
+                    alert(str);
+                },
+            });
+        }, false);
+        aTag = document.getElementById('chooseVideo');
+        aTag.addEventListener('click', function(){
+            jsbc.chooseVideo({
+                sourceType: ['album', 'camera'],
+                maxDuration: 60,
+                camera: 'front',
+                success(res){
+                    console.log(res);
+                    //alert(res.localIds);
+                    var video1 = document.getElementById("video1");
+                    video1.src = res.tempFilePath;
+                },
+            });
+        }, false);
+        aTag = document.getElementById('previewImage');
+        aTag.addEventListener('click', function(){
+            jsbc.previewImage({
+                current: "http://static.jstv.com/img/2019/4/2/2019421554187593977_15591.jpg",
+                urls:["http://static.jstv.com/img/2019/4/2/2019421554188467881_15591.jpg","http://static.jstv.com/img/2019/4/2/2019421554187593977_15591.jpg","http://static.jstv.com/img/2019/4/2/2019421554187530997_15591.jpg"],
+                x: 50,
+                y: 100,
+                w: 187,
+                h: 109,
+            });
+        }, false);
+        aTag = document.getElementById('startRecord');
+        aTag.addEventListener('click', function(){
+            jsbc.startRecord({
+            });
+        }, false);
+        aTag = document.getElementById('stopRecord');
+        aTag.addEventListener('click', function(){
+            jsbc.stopRecord({
+                success(res){
+                    console.log(res);
+                    //alert(res.localIds);
+                    var audio1 = document.getElementById("audio1");
+                    audio1.src = res.localId;
+                },
+            });
+        }, false);
+        aTag = document.getElementById('playVoice');
+        aTag.addEventListener('click', function(){
+            var audio1 = document.getElementById("audio1");
+            jsbc.playVoice({
+                localId:audio1.src,
+            });
+        }, false);
+        aTag = document.getElementById('pauseVoice');
+        aTag.addEventListener('click', function(){
+            var audio1 = document.getElementById("audio1");
+            jsbc.pauseVoice({
+                localId:audio1.src,
+            });
+        }, false);
+        aTag = document.getElementById('stopVoice');
+        aTag.addEventListener('click', function(){
+            var audio1 = document.getElementById("audio1");
+            jsbc.stopVoice({
+                localId:audio1.src,
+            });
+        }, false);
+        aTag = document.getElementById('getLocation');
+        aTag.addEventListener('click', function(){
+            jsbc.getLocation({
+                type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+                success: function (res) {
+                    console.log(res);
+                    var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+                    var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+                    var speed = res.speed; // 速度，以米/每秒计
+                    var accuracy = res.accuracy; // 位置精度
+                    var str = JSON.stringify(res);
+                    alert(str);
+                }
+            });
+        }, false);
+        aTag = document.getElementById('openAPP');
+        aTag.addEventListener('click', function(){
+            jsbc.openAPP({
+                urlSchemes: 'weixin://',
+                success: function (res) {
+                    console.log(res);
+                    alert('res success = '+res.success);
+                }
+            });
+        }, false);
+        aTag = document.getElementById('openArticle');
+        aTag.addEventListener('click', function(){
+            jsbc.openArticle({
+                type: 1,//
+                sourceid: 123456,
+                success: function (res) {
+                    console.log(res);
+                },
+            });
+        }, false);
+        aTag = document.getElementById('readArticle');
+        aTag.addEventListener('click', function(){
+            jsbc.readArticle({
+                success: function (res) {
+                    console.log(res);
+                },
+                finish: function (isfinish) {
+                    console.log('isfinish = '+isfinish);
+                },
+            });
+        }, false);
+        aTag = document.getElementById('getCommand');
+        aTag.addEventListener('click', function(){
+            jsbc.getCommand({
+                success: function (res) {
+                    console.log(res.command);
+                }
+            });
+        }, false);
+        aTag = document.getElementById('getWebToken');
+        aTag.addEventListener('click', function(){
+            jsbc.getWebToken({
+                success: function (res) {
+                    console.log(res.token);
+                    alert(res.token);
+                }
+            });
+        }, false);
+        aTag = document.getElementById('getUserMobile');
+        aTag.addEventListener('click', function(){
+            jsbc.getUserMobile({
+                success: function (res) {
+                    console.log(res);
+                    var str = JSON.stringify(res);
+                    alert(str);
+                }
+            });
+        }, false);
+        aTag = document.getElementById('getUserInfo');
+        aTag.addEventListener('click', function(){
+            jsbc.getUserInfo({
+                showSecret:1,
+                success: function (res) {
+                    console.log(res.userInfo);
+                    var str = JSON.stringify(res.userInfo);
+                    alert(str);
+                },
+                fail: function (msg) {
+                    alert(msg);
+                },
+            });
+        }, false);
+        aTag = document.getElementById('getUserInfoForce');
+        aTag.addEventListener('click', function(){
+            jsbc.getUserInfoForce({
+                showSecret:1,
+                success: function (res) {
+                    console.log(res.userInfo);
+                    var str = JSON.stringify(res.userInfo);
+                    alert(str);
+                },
+                fail: function (msg) {
+                    alert(msg);
+                },
+            });
+        }, false);
+        //分享到朋友圈
+        jsbc.ready(function () {   //需在用户可能点击分享按钮前就先调用
+            jsbc.updateTimelineShareData({
+                title: '分享到朋友圈timeline', // 分享标题
+                desc: '2', // 分享描述
+                link: 'http://www.jstv.com/', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: 'http://static.jstv.com/img/2019/5/3/2019531556848114452_15591.png', // 分享图标
+                success: function (res){
+                    // 设置成功
+                    console.log('分享到朋友圈设置成功');
+                    // alert('分享到朋友圈设置成功');
+                }
+            })
+        });
+        //分享给朋友
+        jsbc.ready(function () {   //需在用户可能点击分享按钮前就先调用
+            jsbc.updateAppMessageShareData({
+                title: '分享给朋友friend', // 分享标题
+                desc: '12', // 分享描述
+                link: 'http://www.jstv.com/', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: 'http://static.jstv.com/img/2019/5/3/2019531556848114452_15591.png', // 分享图标
+                success: function (res){
+                    console.log('分享给朋友设置成功');
+                    // alert('分享给朋友设置成功');
+                },
+            })
+        });
+        //分享设置，微信朋友、朋友圈、QQ、微博
+        jsbc.ready(function () {   //需在用户可能点击分享按钮前就先调用
+            jsbc.updateShareData({
+                title: '统一分享标题', // 分享标题
+                desc: '0', // 分享描述
+                link: 'http://www.jstv.com/', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: 'http://static.jstv.com/img/2019/5/3/2019531556848114452_15591.png', // 分享图标
+                success: function (res){
+                    console.log('分享给朋友设置成功');
+                    // alert('分享给朋友设置成功');
+                },
+            })
+        });
+        aTag = document.getElementById('onMenuShareTimeline');
+        aTag.addEventListener('click', function(){
+            jsbc.onMenuShareTimeline({
+                title: '啦啦啦朋友圈', // 分享标题
+                desc: '12', // 分享描述
+                link: 'http://www.jstv.com/', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: 'http://static.jstv.com/img/2019/5/3/2019531556848114452_15591.png', // 分享图标
+                success: function (res) {
+                    
+                },
+            });
+        }, false);
+        aTag = document.getElementById('onMenuShareAppMessage');
+        aTag.addEventListener('click', function(){
+            jsbc.onMenuShareAppMessage({
+                title: '啦啦啦发送给朋友', // 分享标题
+                desc: '12', // 分享描述
+                link: 'http://www.jstv.com/', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: 'http://static.jstv.com/img/2019/5/3/2019531556848114452_15591.png', // 分享图标
+                success: function (res) {
+                    
+                },
+            });
+        }, false);
+        aTag = document.getElementById('onMenuShareQQ');
+        aTag.addEventListener('click', function(){
+            jsbc.onMenuShareQQ({
+                title: '啦啦啦qq', // 分享标题
+                desc: '12', // 分享描述
+                link: 'http://www.jstv.com/', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: 'http://static.jstv.com/img/2019/5/3/2019531556848114452_15591.png', // 分享图标
+                success: function (res) {
+                    
+                },
+            });
+        }, false);
+        aTag = document.getElementById('onMenuShareSina');
+        aTag.addEventListener('click', function(){
+            jsbc.onMenuShareSina({
+                title: '啦啦啦微博', // 分享标题
+                desc: '12', // 分享描述
+                link: 'http://www.jstv.com/', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: 'http://static.jstv.com/img/2019/5/3/2019531556848114452_15591.png', // 分享图标
+                success: function (res) {
+                    
+                },
+            });
+        }, false);
+        aTag = document.getElementById('goToMainPage');
+        aTag.addEventListener('click', function(){
+            jsbc.goToMainPage({
+                success: function (res) {
+                },
+            });
+        }, false);
+        aTag = document.getElementById('uploadImage');
+        aTag.addEventListener('click', function(){
+            var img1 = document.getElementById("image1");
+            // 判断是否选择了图片，测试用
+            if (img1.src.length < 10) {
+                alert('请先用chooseImage选择图片');
+            } else {
+                jsbc.uploadImage({
+                    localId: img1.src,//使用chooseImage返回的localId
+                    isShowProgressTips: 0,
+                    success: function (res) {
+                        var str = JSON.stringify(res);
+                        alert(str);   
+                        if (res.progress) {
+                            console.log('res.progress = '+res.progress);
+                        }
+                    },
+                });
+            }            
+        }, false);
+        aTag = document.getElementById('uploadVoice');
+        aTag.addEventListener('click', function(){
+            var audio1 = document.getElementById("audio1");
+            // 判断是否选择了音频，测试用
+            if (audio1.src.length < 10) {
+                alert('请先开始录音');
+            } else {
+                jsbc.uploadVoice({
+                    localId: audio1.src,//使用stopRecord返回的localId
+                    isShowProgressTips: 1,
+                    success: function (res) {
+                        if (res.serverId) {
+                            alert(res.serverId);   
+                        }
+                        if (res.progress) {
+                            console.log('res.progress = '+res.progress);
+                        }
+                    },
+                });
+            }            
+        }, false);
+        aTag = document.getElementById('uploadVideo');
+        aTag.addEventListener('click', function(){
+            var video1 = document.getElementById("video1");
+            // 判断是否选择了视频，测试用
+            if (video1.src.length < 10) {
+                alert('请先用chooseVideo选择视频');
+            } else {
+                jsbc.uploadVideo({
+                    localId: video1.src,//使用chooseVideo返回的localId
+                    isShowProgressTips: 1,
+                    success: function (res) {
+                        if (res.serverId) {
+                            alert(res.serverId);   
+                        }
+                        if (res.progress) {
+                            console.log('res.progress = '+res.progress);
+                        }
+                    },
+                });
+            }            
+        }, false);
+        aTag = document.getElementById('scanQRCode');
+        aTag.addEventListener('click', function(){
+            jsbc.scanQRCode({
+                count:9,// 默认9
+                sourceType: ['album','camera'],
+                autoPushWeb: 1,
+                success(res){
+                    var str = JSON.stringify(res);
+                    alert(str);
+                },
+            });
+        }, false);
+        aTag = document.getElementById('closePage');
+        aTag.addEventListener('click', function(){
+            jsbc.closePage({
+                success(res){
+                    console.log(res);
+                },
+            });
+        }, false);
+        aTag = document.getElementById('needShowClosePage');
+        aTag.addEventListener('click', function(){
+            jsbc.needShowClosePage({
+                success(res){
+                    console.log(res);
+                    alert(res.needShowClosePage);
+                },
+            });
+        }, false);
+        aTag = document.getElementById('needShowNavBar0');
+        aTag.addEventListener('click', function(){
+            jsbc.needShowNavBar({
+                isShow: 0,
+                success(res){
+                    console.log(res);
+                },
+            });
+        }, false);
+        aTag = document.getElementById('needShowNavBar1');
+        aTag.addEventListener('click', function(){
+            jsbc.needShowNavBar({
+                isShow: 1,
+                success(res){
+                    console.log(res);
+                },
+            });
+        }, false);
+        aTag = document.getElementById('pushToGovPay');
+        aTag.addEventListener('click', function(){
+            jsbc.pushToGovPay({
+                mtdCd:"01",
+                clCd:"01006"
+            });
+        }, false);
+        
+        aTag = document.getElementById('verifyIDCard');
+        aTag.addEventListener('click', function(){
+            jsbc.verifyIDCard({
+                success(res) {
+                    var str = JSON.stringify(res);
+                    alert(str)
+                },
+                fail(msg) {
+                    alert(msg);
+                },
+            });
+        }, false);
+
+        aTag = document.getElementById('jsbcJSSDKCanIUse');
+        aTag.addEventListener('click', function(){
+            var schema = document.getElementById('jsbcJSSDKCanIUseInput').value;
+            jsbc.jsbcJSSDKCanIUse({
+                schema:schema,
+                success(res){
+                    console.log(res);
+                    var str = JSON.stringify(res);
+                    alert(str)
+                },
+            });
+        }, false);
+
+        aTag = document.getElementById('getUserToken');
+        aTag.addEventListener('click', function(){
+            jsbc.getUserToken({
+                needLogin:1,
+                success(res){
+                    console.log(res);
+                    var str = JSON.stringify(res);
+                    alert(str)
+                },
+                fail(res){
+                    console.log(res);
+                    var str = JSON.stringify(res);
+                    alert(str)
+                },
+            });
+        }, false);
+
+        aTag = document.getElementById('downloadImage');
+        aTag.addEventListener('click', function(){
+            jsbc.downloadImage({
+                imageUrl:"https://image.cm.jstv.com/images/2020/11/30/202011301606706373372_1.jpg",
+                isShowProgressTips:1,
+                success(res){
+                    console.log(res);
+                    var str = JSON.stringify(res);
+                    alert(str)
+                },
+                fail(res){
+                    console.log(res);
+                    var str = JSON.stringify(res);
+                    alert(str)
+                },
+            });
+        }, false);
+
+        aTag = document.getElementById('logoutFinish');
+        aTag.addEventListener('click', function(){
+            jsbc.logoutFinish({
+                success(res){
+                    console.log(res);
+                    var str = JSON.stringify(res);
+                    alert(str)
+                },
+                fail(res){
+                    console.log(res);
+                    var str = JSON.stringify(res);
+                    alert(str)
+                },
+            });
+        }, false);
+
+        aTag = document.getElementById('openWXminiProgram');
+        aTag.addEventListener('click', function(){
+            jsbc.openWXminiProgram({
+                miniProgramId:"gh_5da0ff20ee38",
+                path:"",
+                success(res){
+                    console.log(res);
+                    var str = JSON.stringify(res);
+                    alert(str)
+                },
+                fail(res){
+                    console.log(res);
+                    var str = JSON.stringify(res);
+                    alert(str)
+                },
+            });
+        }, false);
+
+        aTag = document.getElementById('jsbcPay');
+        aTag.addEventListener('click', function(){
+            jsbc.jsbcPay({
+                type:2,
+                orderInfo: {"data":{"payInfo":{"appid":"wx503c8290420fbea5","partnerid":1250080401,"prepayid":"wx10142951933590516e142828e047e90000","package":"Sign=WXPay","noncestr":"f6fc6f992c9b4d2bae7277c187abbbd6","timestamp":1668061773,"sign":"D2D6C03B660DE8DB3F89B39B37B0B4FC"}}},
+                success(res){
+                    console.log(res);
+                    var str = JSON.stringify(res);
+                    alert(str)
+                },
+                fail(res){
+                    console.log(res);
+                    var str = JSON.stringify(res);
+                    alert(str)
+                },
+            });
+        }, false);
+
+        
+        aTag = document.getElementById('shareWeiXinMiniProgram');
+        aTag.addEventListener('click', function(){
+            jsbc.shareWeiXinMiniProgram({
+                title: '测试小程序', // 分享标题
+                desc: '这是分享小程序的描述', // 分享描述
+                webpageUrl: '', // 兼容低版本的网页链接
+                miniProgramId: 'gh_5da0ff20ee38', // 小程序的userName
+                path:'', //小程序的页面路径
+                hdImageData:'',//小程序新版本的预览图BASE64，6.5.9及以上版本微信客户端支持
+                withShareTicket:true,//是否使用带 shareTicket 的分享
+                success(res){
+                    console.log(res);
+                    var str = JSON.stringify(res);
+                    alert(str)
+                },
+                fail(res){
+                    console.log(res);
+                    var str = JSON.stringify(res);
+                    alert(str)
+                },
+            });
+        }, false);
+
+
+        aTag = document.getElementById('hideShareButton');
+        aTag.addEventListener('click', function(){
+            jsbc.updateShareData({
+                title: '统一分享标题', // 分享标题
+                desc: '0', // 分享描述
+                link: '',
+                imgUrl: 'http://static.jstv.com/img/2019/5/3/2019531556848114452_15591.png', // 分享图标
+                success: function (res){
+                    console.log('分享给朋友设置成功');
+                    // alert('分享给朋友设置成功');
+                },
+            })
+        }, false);
+
+
+        aTag = document.getElementById('showShareButton');
+        aTag.addEventListener('click', function(){
+            jsbc.updateShareData({
+                title: '统一分享标题', // 分享标题
+                desc: '0', // 分享描述
+                link: 'http://www.jstv.com/',
+                imgUrl: 'http://static.jstv.com/img/2019/5/3/2019531556848114452_15591.png', // 分享图标
+                success: function (res){
+                    console.log('分享给朋友设置成功');
+                    // alert('分享给朋友设置成功');
+                },
+            })
+        }, false);
+
+        // function interceptAppNavBack(){
+        //     //处理点击返回事件
+        //     alert("interceptAppNavBack")
+        //     return true;
+        // }
+
+</script>
+<audio id="audio1" src="" controls="controls" width="100" height="80" style="margin-top: 20px;">音频标签</audio></br>
+<img id="image1" src="" width="550" height="320" style="margin-top: 20px;"></br>
+<img id="image2" src="" width="550" height="320" style="margin-top: 20px;"></br>
+<video id="video1" src="" controls="controls" width="550" height="320" style="margin-top: 20px;"></video>
+</body>
+</html>
