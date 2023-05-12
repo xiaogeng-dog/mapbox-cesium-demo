@@ -12,7 +12,7 @@ import { center } from "@/assets/js/mapBasis";
  * @param {*} container  容器
  * @returns map对象
  */
-function initMap(container) {
+export function initMap(container) {
   let style = getStyle();
   const map = new mapboxgl.Map({
     container, // container ID
