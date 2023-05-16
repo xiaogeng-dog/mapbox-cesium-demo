@@ -51,6 +51,7 @@ function getStyle() {
       "mapbox:type": "template",
     },
     sprite: "mapbox://sprites/mapbox/streets-v8",
+    // "sprite": "mapbox://sprites/examples/cjikt35x83t1z2rnxpdmjs7y7",
     glyphs: "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
     // center: center,
     zoom: 3,
